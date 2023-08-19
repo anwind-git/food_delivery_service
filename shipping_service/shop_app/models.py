@@ -24,7 +24,7 @@ class Products(models.Model):
     menu_categories = models.ManyToManyField('MenuCategories', verbose_name='Категория блюда')
     queue = models.IntegerField(editable=False, default=0, verbose_name='Очередность')
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Создано')
-    time_update = models.DateTimeField(auto_now=True, verbose_name='Обнавлено')
+    time_update = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
     publication = models.BooleanField(default=True, verbose_name='Опубликовано')
 
     class Meta:

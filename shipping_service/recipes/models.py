@@ -49,7 +49,7 @@ class AddIngredientToRecipe(models.Model):
 
     class Meta:
         db_table = 'add_ingredient_to_recipe'
-        verbose_name = 'рецепт и ингридиент'
+        verbose_name = 'рецепт и ингредиент'
         verbose_name_plural = 'Состав рецептов'
 
     def __str__(self):
