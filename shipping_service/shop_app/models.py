@@ -2,6 +2,8 @@ from django.urls import reverse
 from django.db import models
 from recipes.models import Recipes
 from organization.models import Cities
+from decimal import Decimal
+import math
 
 
 class Products(models.Model):
@@ -38,6 +40,11 @@ class Products(models.Model):
 
     def get_absolute_url(self):
         return reverse('product', kwargs={'post_slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        price_with_increase = math.ceil(self.price * Decimal(1 + 0.037))
+        self.price = price_with_increase
+        super().save(*args, **kwargs)
 
 
 class MenuCategories(models.Model):
