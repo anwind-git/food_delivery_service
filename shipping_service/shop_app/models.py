@@ -42,8 +42,7 @@ class Products(models.Model):
         return reverse('product', kwargs={'post_slug': self.slug})
 
     def save(self, *args, **kwargs):
-        price_with_increase = math.ceil(self.price * Decimal(1 + 0.037))
-        self.price = price_with_increase
+        self.price = math.ceil(self.price * Decimal(1 + 0.037))
         super().save(*args, **kwargs)
 
 
