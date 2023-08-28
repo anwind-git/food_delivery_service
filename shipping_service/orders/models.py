@@ -3,6 +3,7 @@ from shop_app.models import Products
 from organization.models import Cities
 
 
+# сведения о клиенте и его заказе
 class Orders(models.Model):
     identifier = models.CharField(max_length=50, verbose_name='Идентификатор')
     city = models.ForeignKey(Cities, on_delete=models.PROTECT, verbose_name='Город')
@@ -21,13 +22,16 @@ class Orders(models.Model):
         verbose_name = 'заказ'
         verbose_name_plural = 'Заказы'
 
+    # возвращаем в виде строки номер заказа
     def __str__(self):
-        return 'Order {}'.format(self.id)
+        return 'Заказ {}'.format(self.id)
 
+    # вычисляем итоговую сумму заказа
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.items.all())
 
 
+# заказанные товары клиента
 class OrderItem(models.Model):
     order = models.ForeignKey('Orders', on_delete=models.CASCADE, related_name='items', verbose_name='Заказ')
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='order_items',
@@ -40,8 +44,10 @@ class OrderItem(models.Model):
         verbose_name = 'товар'
         verbose_name_plural = 'покупки'
 
+    # возвращаем в виде строки номер заказа
     def __str__(self):
-        return '{}'.format(self.id)
+        return 'Товары для заказа №{}'.format(self.id)
 
+    # возвращаем цену умноженную на количество
     def get_cost(self):
         return self.price * self.quantity

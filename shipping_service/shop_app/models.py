@@ -6,8 +6,9 @@ from decimal import Decimal
 import math
 
 
+# класс товаров
 class Products(models.Model):
-
+    # выпадающий список для поля “Срок годности”
     SHELF_LIFE = (
         (0, '---------'),
         (1, '5 суток при температуре от +2 до +5 °C'),
@@ -29,23 +30,29 @@ class Products(models.Model):
     time_update = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
     publication = models.BooleanField(default=True, verbose_name='Опубликовано')
 
+    # метаданные для модели
     class Meta:
         db_table = 'products'
         verbose_name = 'блюда'
         verbose_name_plural = 'Продукция'
+        # экземпляры будут упорядочены по полю в порядке возрастания
         ordering = ['id']
 
+    # возвращает значение атрибута для каждого экземпляра модели
     def __str__(self):
         return self.product_name
 
+    # метод возвращает URL-адрес представления "product" с ключевым словом "post_slug"
     def get_absolute_url(self):
         return reverse('product', kwargs={'post_slug': self.slug})
 
+    # сразу прибавляет 3,7% к цене, комиссия за операцию в юкасса.
     def save(self, *args, **kwargs):
         self.price = math.ceil(self.price * Decimal(1 + 0.037))
         super().save(*args, **kwargs)
 
 
+# класс категорий меню товаров
 class MenuCategories(models.Model):
     categorie = models.CharField(max_length=20, db_index=True, verbose_name='Категория')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
@@ -61,14 +68,3 @@ class MenuCategories(models.Model):
 
     def get_absolute_url(self):
         return reverse('category', kwargs={'cat_slug': self.slug})
-
-
-class SettingsShop(models.Model):
-    phone = models.CharField(max_length=20, blank=False, verbose_name='Телефон')
-    currency = models.CharField(max_length=5, blank=False, verbose_name='Валюта')
-    vat = models.IntegerField(verbose_name='Код ставки НДС')
-
-    class Meta:
-        db_table = 'settings_shop'
-        verbose_name = 'настройки магазина '
-        verbose_name_plural = 'Настройки'

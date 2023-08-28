@@ -1,6 +1,7 @@
 from django.db import models
 
 
+# сведения о руководителе, юр. лице, владельце магазина, организации
 class Manager(models.Model):
     last_name = models.CharField(max_length=30, verbose_name='Фамилия')
     first_name = models.CharField(max_length=30, verbose_name='Имя')
@@ -21,6 +22,7 @@ class Manager(models.Model):
         return self.last_name
 
 
+# адреса деятельности магазина, ресторана, организации
 class Addresses(models.Model):
     addresse = models.CharField(max_length=250, db_index=True, blank=False, verbose_name='Адрес ресторана')
 
@@ -33,6 +35,7 @@ class Addresses(models.Model):
         return self.addresse
 
 
+# города деятельности магазина, ресторана, организации
 class Cities(models.Model):
     city = models.CharField(max_length=70, verbose_name='Город')
     slug = models.SlugField(max_length=70, unique=True, db_index=True, verbose_name="URL")
