@@ -24,7 +24,7 @@ class Products(models.Model):
     shelf_life = models.IntegerField(choices=SHELF_LIFE, default=0, verbose_name='Срок годности')
     price = models.IntegerField(verbose_name='Цена')
     cities = models.ManyToManyField(Cities, verbose_name='Города обслуживания')
-    menu_categories = models.ManyToManyField('MenuCategories', verbose_name='Категория блюда')
+    menu_categories = models.ManyToManyField('MenuCategories', verbose_name='Категория товара')
     queue = models.IntegerField(editable=False, default=0, verbose_name='Очередность')
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Создано')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
@@ -33,7 +33,7 @@ class Products(models.Model):
     # метаданные для модели
     class Meta:
         db_table = 'products'
-        verbose_name = 'блюда'
+        verbose_name = 'товар'
         verbose_name_plural = 'Продукция'
         # экземпляры будут упорядочены по полю в порядке возрастания
         ordering = ['id']
@@ -54,14 +54,14 @@ class Products(models.Model):
 
 # класс категорий меню товаров
 class MenuCategories(models.Model):
-    categorie = models.CharField(max_length=20, db_index=True, verbose_name='Категория')
+    categorie = models.CharField(max_length=20, db_index=True, verbose_name='Название')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
     queue = models.IntegerField(verbose_name='Очередность')
 
     class Meta:
         db_table = 'menu_categories'
         verbose_name = 'категорию '
-        verbose_name_plural = 'Категории блюд'
+        verbose_name_plural = 'Категории товаров'
 
     def __str__(self):
         return self.categorie

@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import Sum, Count
+from django.db.models.functions import Round
 
 
 # ингредиенты для составления рецепта
@@ -45,11 +47,21 @@ class AddIngredientToRecipe(models.Model):
 
     # вычисляем кжбу по формуле: (калорийность / 100) * вес и т.д.
     def save(self, *args, **kwargs):
-        self.kcal = (self.ingredient.kcal / 100) * self.weight
-        self.fats = (self.ingredient.fats / 100) * self.weight
-        self.squirrels = (self.ingredient.squirrels / 100) * self.weight
-        self.carbs = (self.ingredient.carbs / 100) * self.weight
+        self.kcal = (self.ingredient.kcal / 100) * float(self.weight)
+        self.fats = (self.ingredient.fats / 100) * float(self.weight)
+        self.squirrels = (self.ingredient.squirrels / 100) * float(self.weight)
+        self.carbs = (self.ingredient.carbs / 100) * float(self.weight)
         super().save(*args, **kwargs)
+
+    def calculate_totals(self):
+        data = AddIngredientToRecipe.objects.filter(recipe=self.id).aggregate(
+            withs=Sum(self.recipe.serving_weight) / Count(self.recipe.serving_weight),
+            kcal=Round(Sum('kcal') * self.recipe.serving_weight / Sum('weight'), 2),
+            fats=Round(Sum('fats') * self.recipe.serving_weight / Sum('weight'), 2),
+            squirrels=Round(Sum('squirrels') * self.recipe.serving_weight / Sum('weight'), 2),
+            carbs=Round(Sum('carbs') * self.recipe.serving_weight / Sum('weight'), 2)
+        )
+        return data
 
     class Meta:
         db_table = 'add_ingredient_to_recipe'
