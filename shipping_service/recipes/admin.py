@@ -11,7 +11,7 @@ class IngredientsAdmin(admin.ModelAdmin):
 
 @admin.register(Recipes)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ['recipe', 'serving_weight']
+    list_display = ['recipe', 'serving_weight', 'kcal', 'squirrels', 'fats', 'carbs']
     search_fields = ['recipe']
     list_per_page = 15
 

@@ -9,7 +9,7 @@ class ManagerAdmin(admin.ModelAdmin):
 
 @admin.register(Addresses)
 class AddressesAdmin(admin.ModelAdmin):
-    list_display = ['addresse']
+    list_display = ['city', 'addresse']
 
 
 @admin.register(Cities)

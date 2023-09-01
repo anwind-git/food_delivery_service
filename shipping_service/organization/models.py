@@ -24,6 +24,7 @@ class Manager(models.Model):
 
 # адреса деятельности магазина, ресторана, организации
 class Addresses(models.Model):
+    city = models.ForeignKey('Cities', on_delete=models.CASCADE, verbose_name='Город')
     addresse = models.CharField(max_length=250, db_index=True, blank=False, verbose_name='Адрес ресторана')
 
     class Meta:

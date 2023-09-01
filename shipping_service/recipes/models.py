@@ -1,6 +1,5 @@
 from django.db import models
-from django.db.models import Sum, Count
-from django.db.models.functions import Round
+from django.db.models import Sum
 
 
 # ингредиенты для составления рецепта
@@ -25,6 +24,31 @@ class Recipes(models.Model):
     recipe = models.CharField(max_length=50, verbose_name='Название рецепта')
     serving_weight = models.IntegerField(verbose_name='Вес порции грамм')
     needed_for_dishes = models.ManyToManyField('Ingredients', through='AddIngredientToRecipe')
+    kcal = models.FloatField(editable=False, verbose_name='Калорийность')
+    fats = models.FloatField(editable=False, verbose_name='Жиры')
+    squirrels = models.FloatField(editable=False, verbose_name='Белки')
+    carbs = models.FloatField(editable=False, verbose_name='Углеводы')
+
+    def save(self, *args, **kwargs):
+        # вычисления итоговой пищевой ценности рецепта
+        if self.id is not None:
+            totals = AddIngredientToRecipe.objects.filter(recipe=self.id).aggregate(
+                total_kcal=Sum('kcal'),
+                total_weight=Sum('weight'),
+                total_fats=Sum('fats'),
+                total_squirrels=Sum('squirrels'),
+                total_carbs=Sum('carbs'),
+            )
+            self.kcal = round(totals['total_kcal'] * self.serving_weight / totals['total_weight'], 2)
+            self.fats = round(totals['total_fats'] * self.serving_weight / totals['total_weight'], 2)
+            self.squirrels = round(totals['total_squirrels'] * self.serving_weight / totals['total_weight'], 2)
+            self.carbs = round(totals['total_carbs'] * self.serving_weight / totals['total_weight'], 2)
+        else:
+            self.kcal = 0
+            self.fats = 0
+            self.squirrels = 0
+            self.carbs = 0
+        super().save(*args, **kwargs)
 
     class Meta:
         db_table = 'recipes'
@@ -52,16 +76,6 @@ class AddIngredientToRecipe(models.Model):
         self.squirrels = (self.ingredient.squirrels / 100) * float(self.weight)
         self.carbs = (self.ingredient.carbs / 100) * float(self.weight)
         super().save(*args, **kwargs)
-
-    def calculate_totals(self):
-        data = AddIngredientToRecipe.objects.filter(recipe=self.id).aggregate(
-            withs=Sum(self.recipe.serving_weight) / Count(self.recipe.serving_weight),
-            kcal=Round(Sum('kcal') * self.recipe.serving_weight / Sum('weight'), 2),
-            fats=Round(Sum('fats') * self.recipe.serving_weight / Sum('weight'), 2),
-            squirrels=Round(Sum('squirrels') * self.recipe.serving_weight / Sum('weight'), 2),
-            carbs=Round(Sum('carbs') * self.recipe.serving_weight / Sum('weight'), 2)
-        )
-        return data
 
     class Meta:
         db_table = 'add_ingredient_to_recipe'
