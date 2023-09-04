@@ -48,3 +48,22 @@ class Cities(models.Model):
 
     def __str__(self):
         return self.city
+
+
+def cities_data():
+    Cities(city='Москва', slug='moskva').save()
+    Cities(city='Ростов-на-Дону', slug='rostov-na-donu').save()
+    Cities(city='Краснодар', slug='krasnodar').save()
+
+
+def addresses_data():
+    Addresses(city=Cities.objects.get(id=1), addresse='ул. Совхозная, дом 39').save()
+    Addresses(city=Cities.objects.get(id=2), addresse='пр. Михаила Нагибина, 32 ж').save()
+    Addresses(city=Cities.objects.get(id=3), addresse='ул. имени Буденного, дом 2').save()
+
+
+def manager_data():
+    m1, create = Manager.objects.get_or_create(last_name='Иванов', first_name='Иван', middle_name='Иванович', registration_form='ИП',
+                  organization_name='ИП', INN=100000000000, OGRN=100000000000000, phone='+7 (000) 000-00-00')
+    m1.addresses.add(Addresses.objects.get(id=1), Addresses.objects.get(id=2), Addresses.objects.get(id=3))
+    m1.save()

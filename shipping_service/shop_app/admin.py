@@ -39,3 +39,4 @@ class MenuCategoriesAdmin(admin.ModelAdmin):
     list_display = ['categorie', 'slug', 'queue']
     list_per_page = 15
     prepopulated_fields = {'slug': ('categorie',)}
+
