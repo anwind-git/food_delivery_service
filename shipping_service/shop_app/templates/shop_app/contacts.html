@@ -1,0 +1,29 @@
+{% extends 'shop_app/base.html' %}
+{% block content %}
+<div class="container">
+    <br>
+{% for contact in contacts %}
+    <b>Адреса ресторанов:</b>
+    <br>
+    {% for address in contact.addresses.all %}
+    <a href="https://yandex.ru/maps/?text={{ address }}" target="_blank">{{ address }}</a><br>
+    {% endfor %}
+    <br>
+    <b>Руководитель:</b>
+    <br>
+    {{ contact.last_name }}
+    {{ contact.first_name }}
+    {{ contact.middle_name }}
+    <br>
+    <b>Тел.:</b> {{ contact.phone }}
+    <br>
+    <b>Электронная почта:</b> {{ contact.email }}<br>
+    <b>Форма регистрации:</b> {{ contact.registration_form }}
+    <br>
+    <b>ИНН:</b> {{ contact.INN }}
+    <br>
+    <b>ОГРН:</b> {{ contact.OGRN }}
+    <hr>
+{% endfor %}
+</div>
+{% endblock %}

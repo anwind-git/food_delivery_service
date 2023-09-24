@@ -1,0 +1,57 @@
+{% extends 'shop_app/base.html' %}
+{% block content %}
+<br>
+<section class="main-content">
+  <div class="container">
+      <div class="card p-0 border-0 shadow-lg p-3 mb-5 bg-body rounded">
+        <div class="row align-items-center">
+          <div class="col-6">
+          <img src="{{ product.image.url }}" class="card-img-top shadow-lg p-2 mb-3 bg-body rounded" alt="{{ product.product_name }}">
+          </div>
+          <div class="col">
+             <h1>{{ product.product_name }}</h1>
+             <p class="card-text">{{ product.description }}</p>
+            <p>ВЕС ПОРЦИИ: {{ recipe.serving_weight }}  грамм, ЭНЕРГЕТИЧЕСКАЯ ЦЕННОСТЬ: {{ recipe.kcal }} ккал</p>
+            {% if not product.id|stringformat:'s' in request.session.cart %}
+
+                 </div>
+            </div>
+                {% else %}
+                <div class="col text-center">
+
+                   <li class="list-group-item list-group-item-warning">
+                     <br>
+                     <h5>Товар уже добавлен в корзину!</h5>
+                     <br>
+                   </li>
+                </div>
+                {% endif %}
+
+        </div>
+        <div class="container text-center">
+          <hr>
+          <div class="row">
+            <div class="col">
+              ПИЩЕВАЯ ЦЕННОСТЬ<br>
+              <hr>
+              Жиры: {{ recipe.fats }},
+              Белки: {{ recipe.squirrels }},
+              Углеводы: {{ recipe.carbs }}
+            </div>
+            <div class="col-6">
+              СОСТАВ:<br>
+              <hr>
+              {% for i in ingredients %}{{ i.ingredient }}: {{ i.weight }}г, {% endfor %}
+            </div>
+            <div class="col">
+              СРОК ГОДНОСТИ:<br>
+              <hr>
+              {{ shelf_life }}
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+</section>
+<br>
+{% endblock %}

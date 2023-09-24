@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Manager, Addresses, Cities
+from .models import NewManager, Addresses, Cities
 
 
-@admin.register(Manager)
+@admin.register(NewManager)
 class ManagerAdmin(admin.ModelAdmin):
     list_display = ['INN', 'last_name', 'first_name', 'middle_name', 'phone']
 

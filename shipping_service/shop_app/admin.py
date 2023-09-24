@@ -40,3 +40,4 @@ class MenuCategoriesAdmin(admin.ModelAdmin):
     list_per_page = 15
     prepopulated_fields = {'slug': ('categorie',)}
 
+

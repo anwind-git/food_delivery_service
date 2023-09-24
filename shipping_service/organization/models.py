@@ -2,16 +2,16 @@ from django.db import models
 
 
 # сведения о руководителе, юр. лице, владельце магазина, организации
-class Manager(models.Model):
+class NewManager(models.Model):
     last_name = models.CharField(max_length=30, verbose_name='Фамилия')
     first_name = models.CharField(max_length=30, verbose_name='Имя')
     middle_name = models.CharField(max_length=30, verbose_name='Отчество')
     registration_form = models.CharField(max_length=50, verbose_name='Форма регистрации')
-    organization_name = models.CharField(max_length=50, blank=False, verbose_name='Название организации')
     addresses = models.ManyToManyField('Addresses', verbose_name='Адреса ресторанов')
     INN = models.PositiveBigIntegerField(verbose_name='ИНН')
     OGRN = models.PositiveBigIntegerField(verbose_name='ОГРН')
     phone = models.CharField(max_length=20, blank=False, verbose_name='Телефон')
+    email = models.CharField(max_length=50, verbose_name='Электронная почта')
 
     class Meta:
         db_table = 'about_manager'
@@ -57,13 +57,24 @@ def cities_data():
 
 
 def addresses_data():
-    Addresses(city=Cities.objects.get(id=1), addresse='ул. Совхозная, дом 39').save()
-    Addresses(city=Cities.objects.get(id=2), addresse='пр. Михаила Нагибина, 32 ж').save()
-    Addresses(city=Cities.objects.get(id=3), addresse='ул. имени Буденного, дом 2').save()
+    Addresses(city=Cities.objects.get(id=1), addresse='г. Москва, ул. Совхозная, дом 39').save()
+    Addresses(city=Cities.objects.get(id=2), addresse='Ростовская область, г. Ростов-на-Дону, пр. Михаила Нагибина, 32 ж').save()
+    Addresses(city=Cities.objects.get(id=3), addresse='Краснодарский край, г. Краснодар, ул. имени Буденного, дом 2').save()
 
 
 def manager_data():
-    m1, create = Manager.objects.get_or_create(last_name='Иванов', first_name='Иван', middle_name='Иванович', registration_form='ИП',
-                  organization_name='ИП', INN=100000000000, OGRN=100000000000000, phone='+7 (000) 000-00-00')
+    m1, create = NewManager.objects.get_or_create(last_name='Лукянова', first_name='Марина', middle_name='Сергеевна',
+                                                  registration_form='ИП',
+                                                  INN=100000000000, OGRN=100000000000000,
+                                                  email='email@mail.ru',
+                                                  phone='+7 (000) 000-00-00')
     m1.addresses.add(Addresses.objects.get(id=1), Addresses.objects.get(id=2), Addresses.objects.get(id=3))
     m1.save()
+
+    m2, create = NewManager.objects.get_or_create(last_name='Дмитриенко', first_name='Николай', middle_name='Иванович',
+                                                  registration_form='ИП',
+                                                  INN=111111111111, OGRN=111111111111111,
+                                                  email='email@mail.ru',
+                                                  phone='+7 (111) 111-11-11')
+    m2.addresses.add(Addresses.objects.get(id=1), Addresses.objects.get(id=2), Addresses.objects.get(id=3))
+    m2.save()
