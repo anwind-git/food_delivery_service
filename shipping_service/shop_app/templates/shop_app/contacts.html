@@ -3,7 +3,7 @@
 <div class="container">
     <br>
 {% for contact in contacts %}
-    <b>Адреса ресторанов:</b>
+    <b>Контактный адрес:</b>
     <br>
     {% for address in contact.addresses.all %}
     <a href="https://yandex.ru/maps/?text={{ address }}" target="_blank">{{ address }}</a><br>

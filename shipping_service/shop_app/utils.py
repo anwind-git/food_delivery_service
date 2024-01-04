@@ -4,8 +4,7 @@ from organization.models import *
 
 
 menu = [{'title': 'Магазин', 'url_name': '.'},
-        {'title': 'Контакты', 'url_name': 'contacts'}
-        ]
+        {'title': 'Контакты', 'url_name': 'contacts'}]
 
 
 class DataMixin:
