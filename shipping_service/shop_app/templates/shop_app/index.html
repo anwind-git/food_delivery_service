@@ -14,7 +14,11 @@
               <h5 class="card-title">{{ product.product_name }}</h5>
               <p class="card-text">{{ product.short_description }}</p>
               <div class="d-flex justify-content-between align-items-center">
-
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                  <button type="submit" class="btn btn-lg btn-outline-success">в корзину</button>
+                  <input type="hidden" name="quantity" id="myHidden" value="1">
+                    {% csrf_token %}
+                </form>
                 <h4><small class="text-body-secondary">{{ product.price }} руб.</small></h4>
               </div>
             </div>

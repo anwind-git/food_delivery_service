@@ -13,7 +13,29 @@
              <p class="card-text">{{ product.description }}</p>
             <p>ВЕС ПОРЦИИ: {{ recipe.serving_weight }}  грамм, ЭНЕРГЕТИЧЕСКАЯ ЦЕННОСТЬ: {{ recipe.kcal }} ккал</p>
             {% if not product.id|stringformat:'s' in request.session.cart %}
-
+              <form action="{% url 'cart:cart_add' product.id %}" id="form-product" method="post">
+                  <div class="row align-items-center">
+                    <div class="col text-center">
+                        <h2 class="text-success">{{ product.price }} руб.</h2>
+                    </div>
+                    <div class="col-5 text-center">
+                      <span style="font-size: 27px" class="text-secondary">Кол-во: </span><br>
+                    <span class="input-group-btn">
+                        <button class="btn btn-outline-secondary" id="minus" type="button">-</button>
+                    </span>
+                    &nbsp;&nbsp;<span style="font-size: 25px" class="text-primary" id="output">1</span>&nbsp;&nbsp;
+                    <input type="hidden" name="quantity" id="myHidden" value="1">
+                    <span class="input-group-btn">
+                      <button class="btn btn-outline-secondary" id="plus" type="button">+</button>
+                    </span>
+                  </div>
+                  <div class="col">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-lg btn-outline-success">в корзину</button>
+                  </div>
+                  </div>
+                  <br>
+                </form>
                  </div>
             </div>
                 {% else %}

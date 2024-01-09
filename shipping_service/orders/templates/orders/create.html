@@ -1,0 +1,39 @@
+{% extends "shop_app/base.html" %}
+{% block content %}
+{% if cart|length == 0 %}
+<script>window.location.href = "/";</script>
+{% endif %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Оформление заказа</h1>
+            <h4>На общую стоимость: {{ cart.get_total_price }} руб.</h4>
+            <br>
+            СОСТАВ ЗАКАЗА:
+            <hr>
+            <ul>
+                {% for item in cart %}
+                    <li>
+                        {{ item.product }}: в кол-ве: {{ item.quantity }}
+                        {%  if item.quantity < 2%}порция{% endif %}
+                        {%  if item.quantity > 1 and item.quantity < 5 %}порции{% endif %}
+                        {%  if item.quantity > 4 %}порций{% endif %}
+                        на сумму: {{ item.total_price }} руб.
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col">
+            <form action="." method="post" class="order-form">
+                {{ form.as_p }}
+                <input class="form-control" id="phone" name="phone" type="text" placeholder="Телефон" required/>
+                <br>
+                <input class="btn btn-success btn-lg" type="submit" value="Оплатить">
+                {% csrf_token %}
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock %}

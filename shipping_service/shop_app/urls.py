@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import *
+from django.views.decorators.csrf import csrf_exempt
 
 app_name = 'shop_app'
 
@@ -9,5 +10,6 @@ urlpatterns = [
     path('<slug>', ProductsHome.as_view(), name='shop_app'),
     path('city/<slug:city_slug>', post_city, name='city_slug'),
     path('category/<slug:cat_slug>/', ProductsCategory.as_view(), name='category'),
-    path('product/<slug:post_slug>/', ShowProduct.as_view(), name='product')
+    path('product/<slug:post_slug>/', ShowProduct.as_view(), name='product'),
+    path('webhook/', csrf_exempt(my_webhook_handler))
 ]

@@ -1,0 +1,58 @@
+{% extends "shop_app/base.html" %}
+{% block content %}
+{% if cart|length == 0 %}
+<script>window.location.href = "/";</script>
+{% endif %}
+<br>
+{{ context }}
+<section class="main-content">
+  <div class="container">
+  {% for item in cart %}
+    {% with product=item.product %}
+    <div class="row align-items-center">
+      <div class="col-2">
+            <a href="{% url 'shop_app:product' product.slug %}"><img src="{{ product.image.url }}" width="150" height="80"></a>
+      </div>
+      <div class="col">
+          {{ product.product_name }}
+      </div>
+      <div class="col text-center">
+        <form action="{% url 'cart:cart_add' product.id %}" id="form_buying_product" method="post">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default" name="quantity" value="{{ item.update_quantity_form.quantity.value|add:'-1' }}">-</button>
+          </span>
+          {{ item.quantity }}
+          {{ item.update_quantity_form.update }}
+          <span class="input-group-btn">
+          <button type="submit" class="btn btn-default" name="quantity" value="{{ item.update_quantity_form.quantity.value|add:'1' }}">+</button>
+          </span>
+          {% csrf_token %}
+
+        </form>
+
+      </div>
+      <div class="col text-center">
+        Цена: {{ product.price }} Руб.
+      </div>
+      <div class="col text-center">
+        Сумма: {{ item.total_price }} Руб.
+      </div>
+      <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-danger" href="{% url 'cart:cart_remove' product.id %}">X</a>
+      </div>
+    </div>
+      <hr>
+        {% endwith %}
+      {% endfor %}
+    <div class="row align-items-center">
+      <div class="col-9">
+        <h3>Общая стоимость заказа: {{ cart.get_total_price }} Руб.</h3>
+      </div>
+      <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="{% url 'orders:order_create' %}" class="btn btn-success btn-lg">К оформлению заказа</a>
+        <a href="{% url 'shop_app:shop_app' %}" class="btn btn-primary btn-lg">К покупкам</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

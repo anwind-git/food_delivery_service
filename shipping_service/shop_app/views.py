@@ -1,17 +1,23 @@
 """
-Включает представления, связанные с магазином.
+Включает представления страниц магазина.
 """
+import json
+from django.http import HttpResponse
+from yookassa.domain.notification import WebhookNotification
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 from recipes.models import Recipes, AddIngredientToRecipe
 from organization.models import NewManager, Cities
 from shop_app.models import Products, MenuCategories
 from .utils import DataMixin
+from orders.tasks import payment_search
+from yookassa import Payment
 
 
 class BaseClassProduct(DataMixin, ListView):
     """
-    Базовый класс для представлений, связанных с продукцией.
+    Базовый класс для представлений связанных с продукцией.
     """
     model = Products
     template_name = 'shop_app/index.html'
@@ -61,7 +67,8 @@ class ProductsCategory(BaseClassProduct):
         user_context = self.get_user_context()
         city_id = user_context['city']['city_id']
         return Products.objects.filter(menu_categories__slug=self.kwargs['cat_slug'],
-                                       cities=city_id, publication=True).exclude(id__in=self.get_cart())
+                                       cities=city_id,
+                                       publication=True).exclude(id__in=self.get_cart())
 
 
 class ShowProduct(DataMixin, DetailView):
@@ -122,3 +129,21 @@ def post_city(request, city_slug):
     values = {'city_id': city.id, 'city_name': city.city, 'city_slug': city.slug}
     request.session['city'] = values
     return redirect('shop_app:shop_app')
+
+
+@csrf_exempt
+def my_webhook_handler(request):
+    """
+    Метод принимает HTTP-уведомления от Юкасса, о статусе платежа
+    """
+    try:
+        event_json = json.loads(request.body)
+    except json.decoder.JSONDecodeError:
+        return HttpResponse(status=400)
+    notification_object = WebhookNotification(event_json)
+    payment = notification_object.object
+    payment_log = Payment.find_one(payment.id)
+    if payment_log.status == 'succeeded':
+        payment_search.delay(payment.id)
+        return HttpResponse(status=200)
+    return HttpResponse(status=400)
