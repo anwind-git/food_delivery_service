@@ -10,3 +10,8 @@ body::-webkit-scrollbar-thumb {
   background-color: #c1c1c1;
 }
 
+.form-error ul {
+    list-style: none;
+    padding: 0;
+    color: #CC0000;
+}

@@ -1,8 +1,8 @@
 from django.urls import path
-from . import views
+from .views import *
 
 app_name = 'orders'
 
 urlpatterns = [
-    path('create/', views.YooMoneyCheckoutWidget.as_view(), name='order_create'),
+    path('new_order/', AddOrder.as_view(), name='new_order'),
 ]

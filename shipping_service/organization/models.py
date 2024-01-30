@@ -2,6 +2,23 @@
 Модуль моделей Django в службе доставки еды для хранения сведений об организации.
 """
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+
+class UserProfile(AbstractUser):
+    """
+    Класс представляет модель пользователей системы. Включая суперпользователя.
+    """
+    city = models.ForeignKey('Cities', null=True, on_delete=models.PROTECT, verbose_name='Город')
+    address = models.ForeignKey('Addresses', null=True, on_delete=models.PROTECT, verbose_name='Адрес')
+    phone = models.CharField(max_length=20, blank=False, verbose_name='Телефон')
+
+    def save(self, *args, **kwargs):
+        """
+        Шифруем пароль перед сохранением. раскоментировать после добавления супер пользователя.
+        """
+        self.set_password(self.password)
+        super().save(*args, **kwargs)
 
 
 class NewManager(models.Model):
@@ -39,6 +56,7 @@ class Addresses(models.Model):
     """
     city = models.ForeignKey('Cities', on_delete=models.CASCADE, verbose_name='Город')
     addresse = models.CharField(max_length=250, db_index=True, blank=False, verbose_name='Адрес ресторана')
+    phone = models.CharField(max_length=20, blank=False, verbose_name='Телефон')
 
     class Meta:
         """
@@ -57,7 +75,7 @@ class Addresses(models.Model):
 
 class Cities(models.Model):
     """
-    Представляет города, в которых работает магазин.
+    Модель данных городов, в которых работает магазин.
     """
     city = models.CharField(max_length=70, verbose_name='Город')
     slug = models.SlugField(max_length=70, unique=True, db_index=True, verbose_name="URL")
@@ -75,3 +93,31 @@ class Cities(models.Model):
         Возвращает строковое представление города.
         """
         return self.city
+
+
+class DeliveryService(models.Model):
+    """
+    Класс представляет города, в которых работает магазин.
+    """
+    fio = models.CharField(max_length=100, verbose_name='ФИО')
+    age = models.IntegerField(verbose_name='Возраст')
+    phone = models.CharField(max_length=20, blank=False, verbose_name='Телефон')
+    telegram = models.CharField(max_length=100, verbose_name='Telegram')
+    city = models.ForeignKey(Cities, on_delete=models.PROTECT, verbose_name='Город')
+    status = models.BooleanField(default=False, verbose_name='На доставке')
+    day_off = models.BooleanField(default=False, verbose_name='Выходной')
+    work_authorization = models.BooleanField(default=False, verbose_name='Допущен к работе')
+
+    class Meta:
+        """
+        Метаданные для модели службы доставки.
+        """
+        db_table = 'delivery_service'
+        verbose_name = 'сотрудника'
+        verbose_name_plural = 'Служба доставки'
+
+    def __str__(self):
+        """
+        Возвращает ФИО сотрудника службы доставки.
+        """
+        return self.fio

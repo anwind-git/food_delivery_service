@@ -24,6 +24,8 @@ services:
       - POSTGRES_DB=dbname
       - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=pass
+    ports:
+      - '5432:5432'
   redis:
     image: redis:7.0.5-alpine
     hostname: redis
@@ -40,6 +42,12 @@ services:
       - redis
     depends_on:
       - redis
+      - database
+    environment:
+      - DB_HOST=database
+      - DB_NAME=dbname
+      - DB_USER=dbuser
+      - DB_PASS=pass
 
   flower:
     build:
@@ -55,3 +63,20 @@ services:
       - redis
     ports:
       - "5555:5555"
+
+  delivery:
+    build:
+      context: .
+    hostname: bot
+    restart: always
+    volumes:
+      - ./shipping_service:/shipping_service
+    depends_on:
+      - database
+    environment:
+      - DB_HOST=database
+      - DB_NAME=dbname
+      - DB_USER=dbuser
+      - DB_PASS=pass
+    command: >
+      sh -c "python manage.py run_bot"

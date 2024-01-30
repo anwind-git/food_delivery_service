@@ -1,0 +1,40 @@
+{% extends 'shop_app/base_user.html' %}
+{% block content %}
+<div class="container">
+      <br>
+      <h4>Возвращенные заказы для: {{user.address}}</h4>
+      <hr>
+        <form method="get" action="{% url 'shop_app:returned_orders' %}">
+            {% csrf_token %}
+            {{ calendar_form.as_p }}
+            <button class="btn btn-primary" type="submit">Применить фильтр</button>
+        </form>
+      <hr>
+      {% if processing %}
+        {% for order in processing %}
+            {% if user.id == order.user.id and order.paid == False %}
+                {% if order.delivered == True %}
+                    <a href="{% url 'shop_app:return_order' order.id %}" class="btn btn-secondary">Заказ возвращен, вернуть средства клиенту</a>
+                    <div class="alert alert-danger" role="alert" data-order-id="{{ order.id }}">
+                        <b>Идентификатор:</b> {{order.identifier}}
+                        <b>Заказ</b>&nbsp;№{{order.id}} | <b>Создан:</b>&nbsp;{{order.created}}</b>&nbsp;|&nbsp;<b>Город:</b>&nbsp;{{order.city}}&nbsp;|&nbsp;<b>Телефон:&nbsp;</b>&nbsp;{{order.phone}}<br>
+                        <b>Адрес доставки:</b>&nbsp;{{order.address}}<br>
+                        <b>Служба доставки</b>: {{order.delivery_service}} | <b>Телефон:</b> {{order.delivery_service.phone}}
+                    </div>
+                {% else %}
+                    <div class="alert alert-dark" role="alert" data-order-id="{{ order.id }}">
+                        <b>Заказ</b>&nbsp;№{{order.id}} | <b>Создан:</b>&nbsp;{{order.created}}</b>&nbsp;|&nbsp;<b>Город:</b>&nbsp;{{order.city}}&nbsp;|&nbsp;<b>Телефон:&nbsp;</b>&nbsp;{{order.phone}}<br>
+                        <b>Адрес доставки:</b>&nbsp;{{order.address}}<br>
+                        <b>Служба доставки</b>: {{order.delivery_service}} | <b>Телефон:</b> {{order.delivery_service.phone}}<br>
+                        <hr>
+                        <b>Идентификатор:</b>&nbsp;{{order.identifier}}&nbsp;<b>Последняя операция:</b>&nbsp;{{order.updated}}<br>
+                        <p class="text-danger"><b>Причина отказа в обслуживании:</b> {{order.get_denial_service_display}}</p>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+      {% else %}
+        <h3 class="text-danger">Возвращенных заказов нет.</h3>
+      {% endif %}
+</div>
+{% endblock %}

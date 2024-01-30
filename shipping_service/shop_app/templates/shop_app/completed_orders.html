@@ -1,0 +1,54 @@
+{% extends 'shop_app/base_user.html' %}
+{% block content %}
+  <div class="container" id="order-container">
+      <br>
+      <h4>Завершенные заказы для: {{user.address}}</h4>
+      {% if available_employees %}
+            <b class="text-success">Служба доставки доступна.</b>
+        {% else %}
+            <b class="text-danger">Все сотрудники службы доставки заняты.</b>
+        {% endif %}
+      <hr>
+        <form method="get" action="{% url 'shop_app:completed_orders' %}">
+            {% csrf_token %}
+            {{ calendar_form.as_p }}
+            <button class="btn btn-primary" type="submit">Применить фильтр</button>
+        </form>
+      <hr>
+      {% if processing %}
+        {% for order in processing %}
+                {% if order.delivered == True %}
+                    <div class="alert alert-success" role="alert" data-order-id="{{ order.id }}">
+                        <b>Заказ</b> №{{order.id}} | <b>Создан:</b> {{order.created}} | <b>Телефон:</b> {{order.phone}}<br>
+                        <b>Адрес доставки:</b> {{order.address}}<br>
+                        <b>Служба доставки</b>: {{order.delivery_service}} | <b>Телефон:</b> {{order.delivery_service.phone}}
+                    </div>
+                {% else %}
+                    {% if order.delivery_service != None %}
+                        <div class="alert alert-warning" role="alert" data-order-id="{{ order.id }}">
+                    {% else %}
+                        {% if available_employees %}
+                            <form action="{% url 'shop_app:deliver_order' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" id="order_identifier" name="order_identifier" value="{{order.identifier}}">
+                                <input class="btn btn btn-success" type="submit" value="Подбор нового сотрудника службы доставки">
+                            </form>
+                        {% endif %}
+                        <div class="alert alert-danger" role="alert" data-order-id="{{ order.id }}">
+                    {% endif %}
+                            <b>Заказ</b> №{{order.id}} | <b>Создан:</b> {{order.created}}</b> | <b>Телефон: </b> {{order.phone}}<br>
+                            <b>Адрес доставки:</b> {{order.address}}<br>
+                             <b>Служба доставки</b>: {{order.delivery_service}} | <b>Телефон:</b> {{order.delivery_service.phone}}
+                        </div>
+                    {% for item in order.items.all %}
+                        <img src="/{{item.product.image}}" width="80" height="50">&nbsp;&nbsp;&nbsp;<a href="/product/{{item.product.slug}}">{{ item.product.product_name }}</a> (кол-во: {{item.quantity}})&nbsp;&nbsp;&nbsp;
+                    {% endfor %}
+                    <hr>
+                    <br>
+                {% endif %}
+        {% endfor %}
+      {% else %}
+        <h3 class="text-danger">Завершенных заказов нет.</h3>
+      {% endif %}
+</div>
+{% endblock %}

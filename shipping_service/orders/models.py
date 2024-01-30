@@ -3,23 +3,34 @@
 """
 from django.db import models
 from shop_app.models import Products
-from organization.models import Cities
+from organization.models import Cities, UserProfile, DeliveryService
 
 
 class Orders(models.Model):
     """
     Модель, представляющая заказы клиентов.
     """
-    identifier = models.CharField(max_length=50, verbose_name='Идентификатор')
-    city = models.ForeignKey(Cities, on_delete=models.PROTECT, verbose_name='Город')
+    DENIAL_SERVICE = (
+        (1, 'ЗАКАЗ ОТМЕНЕН КЛИЕНТОМ'),
+        (2, 'ЗАКАЗ НЕ ПОДТВЕРЖДЕН'),
+        (3, 'В АДРЕСЕ ДОСТАВКИ УКАЗАН НЕ ВЕРНЫЙ ГОРОД')
+    )
+    identifier = models.CharField(null=True, max_length=50, verbose_name='Идентификатор')
+    city = models.ForeignKey(Cities, on_delete=models.PROTECT, null=True, verbose_name='Город')
     phone = models.CharField(max_length=250, verbose_name='Телефон')
     email = models.EmailField(verbose_name='Адрес электронной почты')
     address = models.CharField(max_length=250, verbose_name='Адрес доставки')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
-    updated = models.DateTimeField(auto_now=True, verbose_name='Время оплаты')
+    updated = models.DateTimeField(auto_now=True, verbose_name='Последняя операция')
+    user = models.ForeignKey(UserProfile, null=True, on_delete=models.PROTECT,
+                             verbose_name='Оператор', blank=True)
+    delivery_service = models.ForeignKey(DeliveryService, null=True, on_delete=models.PROTECT,
+                                         verbose_name='Сотрудник службы доставки', blank=True)
     paid = models.BooleanField(default=False, verbose_name='Оплачен')
     work = models.BooleanField(default=False, verbose_name='В работе')
     delivered = models.BooleanField(default=False, verbose_name='Доставлен')
+    denial_service = models.IntegerField(choices=DENIAL_SERVICE, null=True, blank=True,
+                                         default=0, verbose_name='Причина отказа в обслуживании')
 
     class Meta:
         """
@@ -34,7 +45,7 @@ class Orders(models.Model):
         """
         Возвращает строковое представление заказа.
         """
-        return f'Заказ {self.id}'
+        return f'Заказ №{self.id}'
 
     def get_total_cost(self) -> float:
         """

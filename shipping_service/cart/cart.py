@@ -5,6 +5,7 @@ from decimal import Decimal
 from django.conf import settings
 from shop_app.models import Products
 from cart.forms import CartAddProductForm
+from shipping_service.settings import shipping_cost
 
 
 class Cart:
@@ -77,6 +78,14 @@ class Cart:
         Метод получения общей стоимость товаров в корзине
         """
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+
+    def price_with_delivery(self):
+        """
+        Метод получения общей стоимость товаров в корзине
+        """
+        total_price = sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+        total_price += shipping_cost
+        return total_price
 
     def clear(self):
         """

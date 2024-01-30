@@ -4,12 +4,12 @@
 from django.db.models import Count
 from organization.models import Cities, Addresses
 from cart.forms import CartAddProductForm
-from orders.forms import OrderCreateForm
 from .models import MenuCategories
-
+from shipping_service.settings import shipping_cost, currency2, single_telephone_number, site_name
 
 menu = [{'title': 'Магазин', 'url_name': '.'},
-        {'title': 'Контакты', 'url_name': 'contacts'}]
+        {'title': 'Контакты', 'url_name': 'contacts'}
+        ]
 
 
 class DataMixin:
@@ -20,7 +20,7 @@ class DataMixin:
 
     def get_cart(self):
         """
-        Метод получения идентификаторов товаров в корзине из сессии пользователя
+        Метод получения идентификаторов товаров в корзине из сессии
         """
         product_ids_in_cart = map(str, self.request.session.get('cart', {}).keys())
         return product_ids_in_cart
@@ -41,7 +41,10 @@ class DataMixin:
         context['addresses'] = Addresses.objects.all()
         context['cart_product_form'] = CartAddProductForm
         context['cities'] = Cities.objects.all()
-        context['form'] = OrderCreateForm
+        context['shipping_cost'] = shipping_cost
+        context['currency2'] = currency2
+        context['single_telephone_number'] = single_telephone_number
+        context['site_name'] = site_name
         if 'cat_select' not in context:
             context['cat_select'] = 0
         return context

@@ -4,7 +4,7 @@ from .models import Products, MenuCategories
 
 
 @admin.register(Products)
-class ProductstAdmin(admin.ModelAdmin):
+class ProductsAdmin(admin.ModelAdmin):
     list_display = ['product_name', 'get_html_photo', 'price', 'time_update', 'queue', 'publication']
     search_fields = ['product_name', 'description', 'price']
     list_per_page = 15
@@ -28,5 +28,4 @@ class MenuCategoriesAdmin(admin.ModelAdmin):
     list_display = ['categorie', 'slug', 'queue']
     list_per_page = 15
     prepopulated_fields = {'slug': ('categorie',)}
-
 

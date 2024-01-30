@@ -19,7 +19,7 @@
                   <input type="hidden" name="quantity" id="myHidden" value="1">
                     {% csrf_token %}
                 </form>
-                <h4><small class="text-body-secondary">{{ product.price }} руб.</small></h4>
+                <h4><small class="text-body-secondary">{{ product.price }} {{currency2}}</small></h4>
               </div>
             </div>
           </div>
