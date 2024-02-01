@@ -108,7 +108,7 @@ class DeliveryService(models.Model):
     status = models.BooleanField(default=False, verbose_name='На доставке')
     day_off = models.BooleanField(default=False, verbose_name='Выходной')
     work_authorization = models.BooleanField(default=False, verbose_name='Допущен к работе')
-    additional_information = models.TextField(null=True, verbose_name='Дополнительная информация')
+    additional_information = models.TextField(null=True, blank=True, verbose_name='Дополнительная информация')
 
     class Meta:
         """
