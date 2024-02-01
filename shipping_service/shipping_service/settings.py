@@ -206,7 +206,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': '{levelname} {asctime} {module} {process} {thread} {message}','style': '{',
+            'format': '{levelname} {asctime} {module} {process} {thread} {message}', 'style': '{',
         },
         'simple': {
             'format': '%(levelname)s %(message)s'

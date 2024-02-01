@@ -11,8 +11,8 @@ class Orders(models.Model):
     """
     Модель, представляющая заказы клиентов.
     """
-    identifier = models.CharField(null=True, max_length=50, verbose_name='Идентификатор')
-    city = models.ForeignKey(Cities, on_delete=models.PROTECT, null=True, verbose_name='Город')
+    identifier = models.CharField(max_length=50, verbose_name='Идентификатор')
+    city = models.ForeignKey(Cities, on_delete=models.PROTECT, verbose_name='Город')
     phone = models.CharField(max_length=250, verbose_name='Телефон')
     email = models.EmailField(verbose_name='Адрес электронной почты')
     address = models.CharField(max_length=250, verbose_name='Адрес доставки')
