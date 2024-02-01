@@ -9,7 +9,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="shortcut icon" type="image/png" href="{% static 'shop_app/favicon.ico' %}">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" href="{% static 'shop_app/css/user_panel.css' %}">
+    <link rel="stylesheet" href="{% static 'orders/css/user_panel.css' %}">
 </head>
 <body>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -53,31 +53,31 @@
                     </a>
                   </li>
                   <li>
-                    <a href="{% url 'shop_app:processing' %}" class="nav-link text-white">
+                    <a href="{% url 'orders:processing' %}" class="nav-link text-white">
                       <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
                       Новые заказы
                     </a>
                   </li>
                   <li>
-                    <a href="{% url 'shop_app:order_work' %}" class="nav-link text-white">
+                    <a href="{% url 'orders:order_work' %}" class="nav-link text-white">
                       <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                       Заказы в работе
                     </a>
                   </li>
                     <li>
-                    <a href="{% url 'shop_app:completed_orders' %}" class="nav-link text-white">
+                    <a href="{% url 'orders:completed_orders' %}" class="nav-link text-white">
                       <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                       Завершенные
                     </a>
                   </li>
                     <li>
-                    <a href="{% url 'shop_app:returned_orders' %}" class="nav-link text-white">
+                    <a href="{% url 'orders:returned_orders' %}" class="nav-link text-white">
                       <svg class="bi me-2" width="16" height="16"><use xlink:href="#collection"/></svg>
                       Возвращенные
                     </a>
                   </li>
                     <li>
-                    <a href="{% url 'shop_app:production_hall' %}" class="nav-link text-white">
+                    <a href="{% url 'orders:production_hall' %}" class="nav-link text-white">
                       <svg class="bi me-2" width="16" height="16"><use xlink:href="#toggles2"/></svg>
                       Зал производства
                     </a>
@@ -131,6 +131,6 @@
     </main>
 </div>
 </div>
-<script src="{% static 'shop_app/js/user_panel_scripts.js' %}"></script>
+<script src="{% static 'orders/js/user_panel_scripts.js' %}"></script>
 </body>
 </html>

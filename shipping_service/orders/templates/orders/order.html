@@ -1,4 +1,4 @@
-{% extends 'shop_app/base_user.html' %}
+{% extends 'orders/base_user.html' %}
 {% block content %}
   <div class="container" id="order-container">
       <br>
@@ -9,11 +9,11 @@
             <div class="alert alert-info" role="alert" data-order-id="{{ order.id }}">
                 <div class="row">
                     <div class="col-9">
-                        <b>Заказ:</b> №{{order.id}} <b>Город:</b> {{order.city}} | <b>Телефон: </b> {{order.phone}}<br>
+                        <b>Заказ:</b> №{{order.id}} <b>Телефон: </b> {{order.phone}}<br>
                         <b>Адрес доставки:</b> {{order.address}}<br>
                     </div>
                     <div class="col d-flex align-items-center">
-                        <form action="{% url 'shop_app:take_order' %}" method="post">
+                        <form action="{% url 'orders:take_order' %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" id="order_id" name="order_id" value="{{order.id}}">
                             <input type="hidden" id="user_id" name="user_id" value="{{user.id}}">

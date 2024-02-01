@@ -5,7 +5,8 @@ from django.db.models import Count
 from organization.models import Cities, Addresses
 from cart.forms import CartAddProductForm
 from .models import MenuCategories
-from shipping_service.settings import shipping_cost, currency2, single_telephone_number, site_name
+from django.core.cache import cache
+from django.conf import settings
 
 menu = [{'title': 'Магазин', 'url_name': '.'},
         {'title': 'Контакты', 'url_name': 'contacts'}
@@ -30,7 +31,10 @@ class DataMixin:
         Метод получение контекстных данных, связанных с пользователем.
         """
         context = kwargs
-        categories = MenuCategories.objects.annotate(Count('products')).order_by('queue')
+        categories = cache.get('categories')
+        if not categories:
+            categories = MenuCategories.objects.annotate(Count('products')).order_by('queue')
+            cache.set('categories', categories, settings.CACHE_TIME)
         if 'city' not in self.request.session:
             first_city = Cities.objects.first()
             values = {'city_id': first_city.id, 'city_name': first_city.city}
@@ -40,11 +44,15 @@ class DataMixin:
         context['categories'] = categories
         context['addresses'] = Addresses.objects.all()
         context['cart_product_form'] = CartAddProductForm
-        context['cities'] = Cities.objects.all()
-        context['shipping_cost'] = shipping_cost
-        context['currency2'] = currency2
-        context['single_telephone_number'] = single_telephone_number
-        context['site_name'] = site_name
+        city = cache.get('city')
+        if not city:
+            city = Cities.objects.all()
+            cache.set('city', city, settings.CACHE_TIME)
+        context['cities'] = city
+        context['shipping_cost'] = settings.SHIPPING_COST
+        context['SHOP_CURRENCY'] = settings.SHOP_CURRENCY
+        context['single_telephone_number'] = settings.SINGLE_TELEPHONE_NUMBER
+        context['site_name'] = settings.SITE_NAME
         if 'cat_select' not in context:
             context['cat_select'] = 0
         return context

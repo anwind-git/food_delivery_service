@@ -4,17 +4,13 @@
 from django.db import models
 from shop_app.models import Products
 from organization.models import Cities, UserProfile, DeliveryService
+from django.conf import settings
 
 
 class Orders(models.Model):
     """
     Модель, представляющая заказы клиентов.
     """
-    DENIAL_SERVICE = (
-        (1, 'ЗАКАЗ ОТМЕНЕН КЛИЕНТОМ'),
-        (2, 'ЗАКАЗ НЕ ПОДТВЕРЖДЕН'),
-        (3, 'В АДРЕСЕ ДОСТАВКИ УКАЗАН НЕ ВЕРНЫЙ ГОРОД')
-    )
     identifier = models.CharField(null=True, max_length=50, verbose_name='Идентификатор')
     city = models.ForeignKey(Cities, on_delete=models.PROTECT, null=True, verbose_name='Город')
     phone = models.CharField(max_length=250, verbose_name='Телефон')
@@ -29,7 +25,7 @@ class Orders(models.Model):
     paid = models.BooleanField(default=False, verbose_name='Оплачен')
     work = models.BooleanField(default=False, verbose_name='В работе')
     delivered = models.BooleanField(default=False, verbose_name='Доставлен')
-    denial_service = models.IntegerField(choices=DENIAL_SERVICE, null=True, blank=True,
+    denial_service = models.IntegerField(choices=settings.DENIAL_SERVICE, null=True, blank=True,
                                          default=0, verbose_name='Причина отказа в обслуживании')
 
     class Meta:

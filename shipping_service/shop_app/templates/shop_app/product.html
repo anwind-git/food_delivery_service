@@ -16,7 +16,7 @@
               <form action="{% url 'cart:cart_add' product.id %}" id="form-product" method="post">
                   <div class="row align-items-center">
                     <div class="col text-center">
-                        <h2 class="text-success">{{ product.price }} {{currency2}}</h2>
+                        <h2 class="text-success">{{ product.price }} {{SHOP_CURRENCY}}</h2>
                     </div>
                     <div class="col-5 text-center">
                       <span style="font-size: 27px" class="text-secondary">Кол-во: </span><br>

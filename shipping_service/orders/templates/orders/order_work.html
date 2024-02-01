@@ -1,4 +1,4 @@
-{% extends 'shop_app/base_user.html' %}
+{% extends 'orders/base_user.html' %}
 {% block content %}
   <div class="container" id="order-container">
       <br>
@@ -14,16 +14,24 @@
             <div class="alert alert-warning" role="alert" data-order-id="{{ order.id }}">
                 <div class="row">
                     <div class="col-9">
-                        <b>Заказ:</b> №{{order.id}}&nbsp;<b>Город:</b>&nbsp;{{order.city}}&nbsp;<b>Телефон:&nbsp;</b>&nbsp;{{order.phone}}<br>
-                        <b>Адрес доставки:</b>&nbsp;{{order.address}}
+                        <b>Заказ:</b> №{{order.id}} <b>Телефон:</b> {{order.phone}}<br>
+                        <b>Адрес доставки:</b>{{order.address}}
                     </div>
                     <div class="col d-flex align-items-center">
                         {% if available_employees %}
-                            <a href="{% url 'shop_app:finalize_order' order.id %}" class="btn btn-success btn-lg">Исполнить</a>
+                            <form action="{% url 'orders:order_ready_delivery' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" id="order_identifier" name="order_identifier" value="{{order.identifier}}">
+                                <button class="btn btn-success" type="submit">Исполнить</button>
+                            </form>
                         {% endif %}
                     </div>
                     <div class="col d-flex align-items-center">
-                        <a href="{% url 'shop_app:cancel_order' order.id %}" class="btn btn-danger btn-lg">Х</a>
+                        <form action="{% url 'orders:cancel_order' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" id="cancel_identifier" name="cancel_identifier" value="{{order.identifier}}">
+                            <button class="btn btn-danger" type="submit">Возврат</button>
+                        </form>
                     </div>
                 </div>
             </div>

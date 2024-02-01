@@ -1,0 +1,23 @@
+{% extends 'orders/base_user.html' %}
+{% block content %}
+<div class="container">
+    <br>
+    <h4>Вы действительно хотите отменить <b>заказ №{{order_id}}</b> ?</h4>
+    <p class="text-danger"><b>ВНИМАНИЕ! Статус заказа будет установлен как не оплачен, а средства заказчика
+        вернуться ему обратно на счет.</b></p>
+    <hr>
+    <b>Идентификатор заказа:</b> {{order_identifier}}<br>
+    <b>Телефон:</b> {{order_phone}}<br>
+    <b>Адрес для доставки:</b> {{order_address}}<br>
+    <b>Заказ создан:</b> {{order_created}}<br>
+    <hr>
+    <form action="{% url 'orders:order_cancellation' %}" method="post">
+        {% csrf_token %}
+        <h5>Причина отказа в обслуживании:</h5>
+        {{denial_service.as_p}}
+        <input type="hidden" id="order_identifier" name="order_identifier" value="{{order_identifier}}">
+        <input class="btn btn-danger btn-lg" type="submit" value="Отменить заказ">
+        <a href="{% url 'orders:order_work' %}" class="btn btn-primary btn-lg">Отмена</a>
+    </form>
+</div>
+{% endblock %}

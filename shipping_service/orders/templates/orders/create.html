@@ -9,7 +9,7 @@
         <div class="col">
             <h2>Оформление заказа:</h2>
             <br>
-            <h4>На общую стоимость: {{cart.price_with_delivery}} {{currency2}}</h4>
+            <h4>На общую стоимость: {{cart.price_with_delivery}} {{SHOP_CURRENCY}}</h4>
             <br>
             СОСТАВ ЗАКАЗА:
             <hr>
@@ -18,10 +18,10 @@
                         {%  if item.quantity < 2%}порция{% endif %}
                         {%  if item.quantity > 1 and item.quantity < 5 %}порции{% endif %}
                         {%  if item.quantity > 4 %}порций{% endif %}
-                        на сумму: {{ item.total_price }} {{currency2}}<br><br>
+                        на сумму: {{ item.total_price }} {{SHOP_CURRENCY}}<br><br>
                 {% endfor %}
             <hr>
-             <h3>Доставка заказа: {{shipping_cost}} {{currency2}}</h3>
+             <h3>Доставка заказа: {{shipping_cost}} {{SHOP_CURRENCY}}</h3>
         </div>
         <div class="col">
             <h2>Заполните все поля:</h2>

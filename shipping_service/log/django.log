@@ -1,0 +1,340 @@
+
+INFO 2024-02-01 17:42:16,213 autoreload 7 140060703193928 Watching for file changes with StatReloader
+INFO 2024-02-01 17:43:04,586 basehttp 7 140060615813944 "GET /completed_orders/ HTTP/1.1" 200 20796
+INFO 2024-02-01 17:43:05,234 basehttp 7 140060615813944 "GET /__debug__/history_sidebar/?store_id=b3cb1b65aa3442cdbbc175ab7cbd925f HTTP/1.1" 200 13427
+INFO 2024-02-01 17:44:04,301 basehttp 7 140060615813944 "GET /completed_orders/ HTTP/1.1" 200 20792
+INFO 2024-02-01 17:44:05,232 basehttp 7 140060615813944 "GET /__debug__/history_sidebar/?store_id=7488f31a117d472ea0e06095b2e0e6f4 HTTP/1.1" 200 13423
+INFO 2024-02-01 17:45:04,296 basehttp 7 140060615813944 "GET /completed_orders/ HTTP/1.1" 200 20793
+INFO 2024-02-01 17:45:05,235 basehttp 7 140060615813944 "GET /__debug__/history_sidebar/?store_id=8e7bfcc01f1942d49719bbaf42c97d6c HTTP/1.1" 200 13424
+INFO 2024-02-01 17:46:04,292 basehttp 7 140060615813944 "GET /completed_orders/ HTTP/1.1" 200 20792
+INFO 2024-02-01 17:46:05,232 basehttp 7 140060615813944 "GET /__debug__/history_sidebar/?store_id=901a4a29906e4675b4d4723f88f6e3a0 HTTP/1.1" 200 13423
+INFO 2024-02-01 17:46:12,530 basehttp 7 140060615813944 "GET /completed_orders/ HTTP/1.1" 200 20793
+INFO 2024-02-01 17:46:12,744 basehttp 7 140060615813944 "GET /__debug__/history_sidebar/?store_id=7246aa60729746a7aa27284aea6f8bd5 HTTP/1.1" 200 13424
+INFO 2024-02-01 17:46:14,260 basehttp 7 140060615813944 "GET /order_work/ HTTP/1.1" 200 17828
+INFO 2024-02-01 17:46:14,308 basehttp 7 140060607720248 "GET /static/debug_toolbar/js/toolbar.js HTTP/1.1" 304 0
+INFO 2024-02-01 17:46:14,309 basehttp 7 140060615813944 "GET /static/debug_toolbar/css/toolbar.css HTTP/1.1" 304 0
+INFO 2024-02-01 17:46:14,318 basehttp 7 140060615813944 "GET /static/debug_toolbar/css/print.css HTTP/1.1" 304 0
+INFO 2024-02-01 17:46:14,321 basehttp 7 140060607720248 "GET /static/debug_toolbar/js/utils.js HTTP/1.1" 304 0
+INFO 2024-02-01 17:46:45,280 basehttp 7 140060607720248 "GET /order_work/ HTTP/1.1" 200 17828
+INFO 2024-02-01 17:46:46,233 basehttp 7 140060607720248 "GET /__debug__/history_sidebar/?store_id=ed6b7aa2b28f45bf9bc43c2d2251ec73 HTTP/1.1" 200 13410
+INFO 2024-02-01 17:47:15,286 basehttp 7 140060607720248 "GET /order_work/ HTTP/1.1" 200 17829
+INFO 2024-02-01 17:47:16,233 basehttp 7 140060607720248 "GET /__debug__/history_sidebar/?store_id=a7e92aaae84d4fd9a00a5892aab99256 HTTP/1.1" 200 13411
+INFO 2024-02-01 17:47:45,277 basehttp 7 140060607720248 "GET /order_work/ HTTP/1.1" 200 17828
+INFO 2024-02-01 17:47:46,234 basehttp 7 140060607720248 "GET /__debug__/history_sidebar/?store_id=679b17970e2f4e9ca2c80b1729a349db HTTP/1.1" 200 13410
+INFO 2024-02-01 17:48:15,279 basehttp 7 140060607720248 "GET /order_work/ HTTP/1.1" 200 17829
+INFO 2024-02-01 17:48:16,233 basehttp 7 140060607720248 "GET /__debug__/history_sidebar/?store_id=d8a60fcb4fdb425faae4ea233082528e HTTP/1.1" 200 13411
+INFO 2024-02-01 17:48:45,286 basehttp 7 140060607720248 "GET /order_work/ HTTP/1.1" 200 17829
+INFO 2024-02-01 17:48:46,232 basehttp 7 140060607720248 "GET /__debug__/history_sidebar/?store_id=0f02f01628044ab6a336bd2d79ae40a6 HTTP/1.1" 200 13411
+INFO 2024-02-01 17:49:15,278 basehttp 7 140060607720248 "GET /order_work/ HTTP/1.1" 200 17828
+INFO 2024-02-01 17:49:16,232 basehttp 7 140060607720248 "GET /__debug__/history_sidebar/?store_id=a6dae7be318b43fb989b3641f63b40ba HTTP/1.1" 200 13410
+INFO 2024-02-01 17:49:45,293 basehttp 7 140060607720248 "GET /order_work/ HTTP/1.1" 200 17829
+INFO 2024-02-01 17:49:46,233 basehttp 7 140060607720248 "GET /__debug__/history_sidebar/?store_id=f37a2b85121c442494011ecd2ae717f8 HTTP/1.1" 200 13411
+INFO 2024-02-01 17:50:15,278 basehttp 7 140060607720248 "GET /order_work/ HTTP/1.1" 200 17829
+INFO 2024-02-01 17:50:16,232 basehttp 7 140060607720248 "GET /__debug__/history_sidebar/?store_id=f84a8bb900df4d8cafa8f2b97c2edc86 HTTP/1.1" 200 13411
+INFO 2024-02-01 17:50:21,633 autoreload 7 140060703193928 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 17:50:22,506 autoreload 15 140656665594696 Watching for file changes with StatReloader
+INFO 2024-02-01 17:50:45,430 basehttp 15 140656578214712 "GET /order_work/ HTTP/1.1" 200 17831
+INFO 2024-02-01 17:50:46,232 basehttp 15 140656578214712 "GET /__debug__/history_sidebar/?store_id=ba38cd07a580418587aaf8bf95c004ef HTTP/1.1" 200 13413
+INFO 2024-02-01 17:50:46,692 autoreload 15 140656665594696 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 17:50:47,318 autoreload 22 140419744766792 Watching for file changes with StatReloader
+INFO 2024-02-01 17:51:15,406 basehttp 22 140419657349944 "GET /order_work/ HTTP/1.1" 200 17830
+INFO 2024-02-01 17:51:16,233 basehttp 22 140419657349944 "GET /__debug__/history_sidebar/?store_id=ce2f155aa7a947f6bde746e8ce203da6 HTTP/1.1" 200 13412
+INFO 2024-02-01 17:52:04,289 basehttp 22 140419657349944 "GET /order_work/ HTTP/1.1" 200 17829
+INFO 2024-02-01 17:52:05,233 basehttp 22 140419657349944 "GET /__debug__/history_sidebar/?store_id=374e995a9da64ae9b0fe636a8cbead3a HTTP/1.1" 200 13411
+INFO 2024-02-01 17:52:45,378 autoreload 22 140419744766792 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 17:52:46,118 autoreload 29 140143201221448 Watching for file changes with StatReloader
+INFO 2024-02-01 17:53:04,431 basehttp 29 140143113812792 "GET /order_work/ HTTP/1.1" 200 17831
+INFO 2024-02-01 17:53:05,232 basehttp 29 140143113812792 "GET /__debug__/history_sidebar/?store_id=1c6ff7852a95400ba0cccc094e28941f HTTP/1.1" 200 13413
+INFO 2024-02-01 17:53:45,975 autoreload 29 140143201221448 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 17:53:46,581 autoreload 36 140152088714056 Watching for file changes with StatReloader
+INFO 2024-02-01 17:54:04,405 basehttp 36 140152001297208 "GET /order_work/ HTTP/1.1" 200 17831
+INFO 2024-02-01 17:54:05,232 basehttp 36 140152001297208 "GET /__debug__/history_sidebar/?store_id=0297161cc24d464f8ae2ad27c8f92c02 HTTP/1.1" 200 13413
+INFO 2024-02-01 17:54:28,014 autoreload 36 140152088714056 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 17:54:28,690 autoreload 43 139861930511176 Watching for file changes with StatReloader
+INFO 2024-02-01 17:55:04,417 basehttp 43 139861843102520 "GET /order_work/ HTTP/1.1" 200 17831
+INFO 2024-02-01 17:55:05,234 basehttp 43 139861843102520 "GET /__debug__/history_sidebar/?store_id=458f60dd670e40bca9c91d8c22d67d17 HTTP/1.1" 200 13413
+INFO 2024-02-01 17:55:06,057 autoreload 43 139861930511176 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 17:55:06,706 autoreload 50 140453888265032 Watching for file changes with StatReloader
+INFO 2024-02-01 17:55:09,017 basehttp 50 140453799787320 "GET /order_work/ HTTP/1.1" 200 17830
+INFO 2024-02-01 17:55:09,047 basehttp 50 140453799787320 "GET /static/debug_toolbar/css/toolbar.css HTTP/1.1" 304 0
+INFO 2024-02-01 17:55:09,053 basehttp 50 140453800848184 "GET /static/debug_toolbar/js/toolbar.js HTTP/1.1" 304 0
+INFO 2024-02-01 17:55:09,067 basehttp 50 140453800848184 "GET /static/debug_toolbar/css/print.css HTTP/1.1" 304 0
+INFO 2024-02-01 17:55:09,105 basehttp 50 140453799787320 "GET /static/debug_toolbar/js/utils.js HTTP/1.1" 304 0
+INFO 2024-02-01 17:55:10,770 basehttp 50 140453799787320 "GET /completed_orders/ HTTP/1.1" 200 20792
+INFO 2024-02-01 17:55:12,148 basehttp 50 140453799787320 "GET /order_work/ HTTP/1.1" 200 17828
+INFO 2024-02-01 17:55:14,116 basehttp 50 140453799787320 "GET /processing/ HTTP/1.1" 200 17692
+INFO 2024-02-01 17:55:15,086 basehttp 50 140453799787320 "GET /order_work/ HTTP/1.1" 200 17828
+INFO 2024-02-01 17:55:27,867 autoreload 50 140453888265032 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 17:55:28,494 autoreload 58 139788534856520 Watching for file changes with StatReloader
+INFO 2024-02-01 17:55:45,438 basehttp 58 139788447439672 "GET /order_work/ HTTP/1.1" 200 17831
+INFO 2024-02-01 17:55:46,233 basehttp 58 139788447439672 "GET /__debug__/history_sidebar/?store_id=34be0092ee5c4ddcaf14fffc03b590e7 HTTP/1.1" 200 13413
+INFO 2024-02-01 17:56:15,291 basehttp 58 139788447439672 "GET /order_work/ HTTP/1.1" 200 17829
+INFO 2024-02-01 17:56:16,234 basehttp 58 139788447439672 "GET /__debug__/history_sidebar/?store_id=20cc839707204f7dbd766f593906b9d1 HTTP/1.1" 200 13411
+INFO 2024-02-01 17:56:45,277 basehttp 58 139788447439672 "GET /order_work/ HTTP/1.1" 200 17828
+INFO 2024-02-01 17:56:46,232 basehttp 58 139788447439672 "GET /__debug__/history_sidebar/?store_id=f58604d0e79d43798d20513fd5103444 HTTP/1.1" 200 13410
+INFO 2024-02-01 17:57:15,285 basehttp 58 139788447439672 "GET /order_work/ HTTP/1.1" 200 17828
+INFO 2024-02-01 17:57:16,233 basehttp 58 139788447439672 "GET /__debug__/history_sidebar/?store_id=fa9c6a4f92f7482b9f5073130853b53e HTTP/1.1" 200 13410
+INFO 2024-02-01 17:57:31,676 autoreload 58 139788534856520 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 17:57:32,584 autoreload 65 140490914040648 Watching for file changes with StatReloader
+INFO 2024-02-01 17:57:42,344 autoreload 65 140490914040648 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 17:57:42,925 autoreload 71 139996020087624 Watching for file changes with StatReloader
+INFO 2024-02-01 17:57:45,437 basehttp 71 139995932678968 "GET /order_work/ HTTP/1.1" 200 17831
+INFO 2024-02-01 17:57:46,237 basehttp 71 139995932678968 "GET /__debug__/history_sidebar/?store_id=3036c4715b764db19c9807f783786a69 HTTP/1.1" 200 13413
+INFO 2024-02-01 17:57:52,727 autoreload 71 139996020087624 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 17:57:53,469 autoreload 78 140372588714824 Watching for file changes with StatReloader
+INFO 2024-02-01 17:58:56,431 autoreload 78 140372588714824 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 17:58:56,945 autoreload 80 140417892207432 Watching for file changes with StatReloader
+INFO 2024-02-01 17:59:15,490 basehttp 80 140417804835640 "GET /order_work/ HTTP/1.1" 200 17831
+INFO 2024-02-01 17:59:16,232 basehttp 80 140417804835640 "GET /__debug__/history_sidebar/?store_id=7c84f316adb548168c2ad2b2da6bcd25 HTTP/1.1" 200 13413
+INFO 2024-02-01 17:59:45,277 basehttp 80 140417804835640 "GET /order_work/ HTTP/1.1" 200 17828
+INFO 2024-02-01 17:59:46,232 basehttp 80 140417804835640 "GET /__debug__/history_sidebar/?store_id=176295ed04f64bf39f141b682f741122 HTTP/1.1" 200 13410
+INFO 2024-02-01 18:00:08,033 autoreload 80 140417892207432 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 18:00:08,655 autoreload 87 139875042925384 Watching for file changes with StatReloader
+INFO 2024-02-01 18:00:15,530 basehttp 87 139874955516728 "GET /order_work/ HTTP/1.1" 200 17832
+INFO 2024-02-01 18:00:16,234 basehttp 87 139874955516728 "GET /__debug__/history_sidebar/?store_id=71743536355e4768b87ee8c2f697d1bc HTTP/1.1" 200 13414
+INFO 2024-02-01 18:01:04,276 basehttp 87 139874955516728 "GET /order_work/ HTTP/1.1" 200 17828
+INFO 2024-02-01 18:01:05,232 basehttp 87 139874955516728 "GET /__debug__/history_sidebar/?store_id=0c8eac1ddcd24b3d9917b41993c85a24 HTTP/1.1" 200 13410
+INFO 2024-02-01 18:02:04,336 basehttp 87 139874955516728 "GET /order_work/ HTTP/1.1" 200 17829
+INFO 2024-02-01 18:02:05,232 basehttp 87 139874955516728 "GET /__debug__/history_sidebar/?store_id=0859793e2eae46db90981472d52bd3ed HTTP/1.1" 200 13411
+INFO 2024-02-01 18:02:07,936 autoreload 87 139875042925384 /shipping_service/orders/tasks.py changed, reloading.
+INFO 2024-02-01 18:02:08,536 autoreload 94 140712005012296 Watching for file changes with StatReloader
+INFO 2024-02-01 18:03:04,421 basehttp 94 140711917595448 "GET /order_work/ HTTP/1.1" 200 17831
+INFO 2024-02-01 18:03:05,232 basehttp 94 140711917595448 "GET /__debug__/history_sidebar/?store_id=f7894eeb8fee43019a6e83db1d680244 HTTP/1.1" 200 13413
+INFO 2024-02-01 18:03:39,984 autoreload 94 140712005012296 /shipping_service/orders/tasks.py changed, reloading.
+INFO 2024-02-01 18:03:40,652 autoreload 101 139934949956424 Watching for file changes with StatReloader
+INFO 2024-02-01 18:04:04,437 basehttp 101 139934862547768 "GET /order_work/ HTTP/1.1" 200 17831
+INFO 2024-02-01 18:04:05,233 basehttp 101 139934862547768 "GET /__debug__/history_sidebar/?store_id=fb11c16780a945249dc895651efd41be HTTP/1.1" 200 13413
+INFO 2024-02-01 18:05:04,285 basehttp 101 139934862547768 "GET /order_work/ HTTP/1.1" 200 17829
+INFO 2024-02-01 18:05:05,232 basehttp 101 139934862547768 "GET /__debug__/history_sidebar/?store_id=caa75c4db3b8499aaf5ff0718cd1c051 HTTP/1.1" 200 13411
+INFO 2024-02-01 18:05:53,920 autoreload 101 139934949956424 /shipping_service/orders/tasks.py changed, reloading.
+INFO 2024-02-01 18:05:54,569 autoreload 108 139819475970888 Watching for file changes with StatReloader
+INFO 2024-02-01 18:05:58,149 basehttp 108 139819388562232 "GET /order_work/ HTTP/1.1" 200 17831
+INFO 2024-02-01 18:05:58,360 basehttp 108 139819388562232 "GET /__debug__/history_sidebar/?store_id=7dae7318edc040ea9a2d77078a9d2057 HTTP/1.1" 200 13413
+INFO 2024-02-01 18:06:08,912 basehttp 108 139819388562232 "GET /admin/ HTTP/1.1" 200 26056
+INFO 2024-02-01 18:06:09,158 basehttp 108 139819388562232 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2682
+INFO 2024-02-01 18:06:09,169 basehttp 108 139819376438072 "GET /static/debug_toolbar/css/toolbar.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:06:09,171 basehttp 108 139819379620664 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2024-02-01 18:06:09,172 basehttp 108 139819377498936 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2024-02-01 18:06:09,173 basehttp 108 139819378559800 "GET /static/admin/css/responsive.css HTTP/1.1" 200 17905
+INFO 2024-02-01 18:06:09,176 basehttp 108 139819381730104 "GET /static/admin/css/base.css HTTP/1.1" 200 21544
+INFO 2024-02-01 18:06:09,186 basehttp 108 139819376438072 "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+INFO 2024-02-01 18:06:09,376 basehttp 108 139819381730104 "GET /static/debug_toolbar/js/toolbar.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:06:09,380 basehttp 108 139819379620664 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2024-02-01 18:06:09,390 basehttp 108 139819381730104 "GET /static/debug_toolbar/css/print.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:06:09,394 basehttp 108 139819379620664 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2024-02-01 18:06:09,395 basehttp 108 139819378559800 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2024-02-01 18:06:09,420 basehttp 108 139819378559800 "GET /static/debug_toolbar/js/utils.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:06:09,615 basehttp 108 139819378559800 "GET /favicon.ico HTTP/1.1" 200 23694
+INFO 2024-02-01 18:06:11,067 basehttp 108 139819378559800 "GET /admin/orders/orders/ HTTP/1.1" 200 34375
+INFO 2024-02-01 18:06:11,108 basehttp 108 139819381730104 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9042
+INFO 2024-02-01 18:06:11,108 basehttp 108 139819388562232 "GET /static/admin/js/actions.js HTTP/1.1" 200 8067
+INFO 2024-02-01 18:06:11,109 basehttp 108 139819379620664 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6811
+INFO 2024-02-01 18:06:11,109 basehttp 108 139819376438072 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2024-02-01 18:06:11,109 basehttp 108 139819377498936 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2024-02-01 18:06:11,121 basehttp 108 139819381730104 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2024-02-01 18:06:11,122 basehttp 108 139819376438072 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2024-02-01 18:06:11,129 basehttp 108 139819379620664 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2024-02-01 18:06:11,130 basehttp 108 139819377498936 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2024-02-01 18:06:11,141 basehttp 108 139819377498936 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2024-02-01 18:06:11,151 basehttp 108 139819378559800 "GET /admin/jsi18n/ HTTP/1.1" 200 17546
+INFO 2024-02-01 18:06:11,158 basehttp 108 139819378559800 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2024-02-01 18:06:11,179 basehttp 108 139819379620664 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2024-02-01 18:06:11,179 basehttp 108 139819376438072 "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+INFO 2024-02-01 18:06:11,194 basehttp 108 139819377498936 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2024-02-01 18:06:11,204 basehttp 108 139819378559800 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+INFO 2024-02-01 18:06:11,217 basehttp 108 139819376438072 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2024-02-01 18:06:11,385 basehttp 108 139819376438072 "GET /favicon.ico HTTP/1.1" 200 23693
+INFO 2024-02-01 18:06:14,580 basehttp 108 139819376438072 "GET /admin/orders/orders/15/change/ HTTP/1.1" 200 43248
+INFO 2024-02-01 18:06:14,613 basehttp 108 139819378559800 "GET /static/admin/css/forms.css HTTP/1.1" 200 9090
+INFO 2024-02-01 18:06:14,614 basehttp 108 139819377498936 "GET /static/admin/js/inlines.js HTTP/1.1" 200 15526
+INFO 2024-02-01 18:06:14,623 basehttp 108 139819377498936 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11800
+INFO 2024-02-01 18:06:14,629 basehttp 108 139819377498936 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2024-02-01 18:06:14,648 basehttp 108 139819376438072 "GET /admin/jsi18n/ HTTP/1.1" 200 17546
+INFO 2024-02-01 18:06:14,655 basehttp 108 139819376438072 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2024-02-01 18:06:14,675 basehttp 108 139819378559800 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2024-02-01 18:06:14,741 basehttp 108 139819376438072 "GET /static/admin/img/inline-delete.svg HTTP/1.1" 200 560
+INFO 2024-02-01 18:06:14,885 basehttp 108 139819376438072 "GET /favicon.ico HTTP/1.1" 200 23693
+INFO 2024-02-01 18:06:15,277 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 17829
+INFO 2024-02-01 18:06:16,232 basehttp 108 139819376438072 "GET /__debug__/history_sidebar/?store_id=03abb4345b794c8aa087fec84c935831 HTTP/1.1" 200 13411
+INFO 2024-02-01 18:06:25,558 basehttp 108 139819376438072 "POST /admin/orders/orders/15/change/ HTTP/1.1" 302 0
+INFO 2024-02-01 18:06:25,680 basehttp 108 139819376438072 "GET /admin/orders/orders/ HTTP/1.1" 200 34550
+INFO 2024-02-01 18:06:25,744 basehttp 108 139819376438072 "GET /admin/jsi18n/ HTTP/1.1" 200 17546
+INFO 2024-02-01 18:06:26,372 basehttp 108 139819376438072 "GET /favicon.ico HTTP/1.1" 200 23693
+INFO 2024-02-01 18:06:27,840 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 17828
+INFO 2024-02-01 18:06:27,866 basehttp 108 139819376438072 "GET /static/debug_toolbar/css/toolbar.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:06:27,876 basehttp 108 139819378559800 "GET /static/debug_toolbar/css/print.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:06:28,727 basehttp 108 139819376438072 "GET /processing/ HTTP/1.1" 200 17692
+INFO 2024-02-01 18:06:30,139 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 17828
+INFO 2024-02-01 18:06:33,157 basehttp 108 139819376438072 "GET /admin/orders/orders/15/change/ HTTP/1.1" 200 43254
+INFO 2024-02-01 18:06:33,224 basehttp 108 139819376438072 "GET /admin/jsi18n/ HTTP/1.1" 200 17546
+INFO 2024-02-01 18:06:33,363 basehttp 108 139819376438072 "GET /favicon.ico HTTP/1.1" 200 23693
+INFO 2024-02-01 18:06:42,030 basehttp 108 139819376438072 "POST /admin/orders/orders/15/change/ HTTP/1.1" 302 0
+INFO 2024-02-01 18:06:42,150 basehttp 108 139819376438072 "GET /admin/orders/orders/ HTTP/1.1" 200 34546
+INFO 2024-02-01 18:06:42,222 basehttp 108 139819376438072 "GET /admin/jsi18n/ HTTP/1.1" 200 17546
+INFO 2024-02-01 18:06:42,346 basehttp 108 139819376438072 "GET /favicon.ico HTTP/1.1" 200 23693
+INFO 2024-02-01 18:06:44,201 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 17828
+INFO 2024-02-01 18:06:45,289 basehttp 108 139819376438072 "GET /processing/ HTTP/1.1" 200 18942
+INFO 2024-02-01 18:06:46,486 basehttp 108 139819376438072 "POST /take_order/ HTTP/1.1" 302 0
+INFO 2024-02-01 18:06:46,553 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 19681
+INFO 2024-02-01 18:06:48,686 basehttp 108 139819376438072 "POST /order_ready_delivery/ HTTP/1.1" 200 18344
+INFO 2024-02-01 18:06:50,815 basehttp 108 139819376438072 "POST /deliver_order/ HTTP/1.1" 302 0
+INFO 2024-02-01 18:06:50,945 basehttp 108 139819376438072 "GET /completed_orders/ HTTP/1.1" 200 20815
+INFO 2024-02-01 18:06:57,019 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 19157
+INFO 2024-02-01 18:07:27,191 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 19159
+INFO 2024-02-01 18:07:27,408 basehttp 108 139819376438072 "GET /__debug__/history_sidebar/?store_id=9de653e9eaf9473b907f28ad99aac401 HTTP/1.1" 200 13413
+INFO 2024-02-01 18:07:57,132 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 19157
+INFO 2024-02-01 18:07:57,344 basehttp 108 139819376438072 "GET /__debug__/history_sidebar/?store_id=31d3cadf67344b89b35ee0023be74dfe HTTP/1.1" 200 13411
+INFO 2024-02-01 18:08:27,136 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 19157
+INFO 2024-02-01 18:08:27,353 basehttp 108 139819376438072 "GET /__debug__/history_sidebar/?store_id=bfbf4f9a0c3141498274fc3f051e1aa7 HTTP/1.1" 200 13411
+INFO 2024-02-01 18:08:57,138 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 19158
+INFO 2024-02-01 18:08:57,352 basehttp 108 139819376438072 "GET /__debug__/history_sidebar/?store_id=9e73011985014a71ba78343f57a6e949 HTTP/1.1" 200 13412
+INFO 2024-02-01 18:09:27,135 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 19157
+INFO 2024-02-01 18:09:27,352 basehttp 108 139819376438072 "GET /__debug__/history_sidebar/?store_id=47e7bf58b3ff4c9c9d39f068d85c725b HTTP/1.1" 200 13411
+INFO 2024-02-01 18:09:57,140 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 19158
+INFO 2024-02-01 18:09:57,352 basehttp 108 139819376438072 "GET /__debug__/history_sidebar/?store_id=e36a45bf30654dbcb1bde1fd8886265b HTTP/1.1" 200 13412
+INFO 2024-02-01 18:10:27,179 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 19157
+INFO 2024-02-01 18:10:27,392 basehttp 108 139819376438072 "GET /__debug__/history_sidebar/?store_id=da78157b13e6484f8eafe8f254aab49c HTTP/1.1" 200 13411
+INFO 2024-02-01 18:10:57,133 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 19157
+INFO 2024-02-01 18:10:57,344 basehttp 108 139819376438072 "GET /__debug__/history_sidebar/?store_id=37de9dc97036437e8a8133e0f5dfda37 HTTP/1.1" 200 13411
+INFO 2024-02-01 18:11:27,141 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 19158
+INFO 2024-02-01 18:11:27,352 basehttp 108 139819376438072 "GET /__debug__/history_sidebar/?store_id=dd4296beadc242a2b9bebb0a8c8a3185 HTTP/1.1" 200 13412
+INFO 2024-02-01 18:11:57,140 basehttp 108 139819376438072 "GET /order_work/ HTTP/1.1" 200 19157
+INFO 2024-02-01 18:11:57,353 basehttp 108 139819376438072 "GET /__debug__/history_sidebar/?store_id=f2a5927751af4f51805537b7ffb9a760 HTTP/1.1" 200 13411
+INFO 2024-02-01 18:12:05,347 autoreload 108 139819475970888 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 18:12:06,222 autoreload 120 139751249333064 Watching for file changes with StatReloader
+INFO 2024-02-01 18:12:27,305 basehttp 120 139751161924408 "GET /order_work/ HTTP/1.1" 200 19160
+INFO 2024-02-01 18:12:27,520 basehttp 120 139751161924408 "GET /__debug__/history_sidebar/?store_id=c0c405ed68e14955bf180f8d57599111 HTTP/1.1" 200 13414
+INFO 2024-02-01 18:12:37,484 basehttp 120 139751161924408 "GET /admin/organization/deliveryservice/ HTTP/1.1" 200 27919
+INFO 2024-02-01 18:12:37,522 basehttp 120 139751161924408 "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,524 basehttp 120 139751151934264 "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,524 basehttp 120 139751150873400 "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,525 basehttp 120 139751149812536 "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,526 basehttp 120 139751148620600 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,527 basehttp 120 139751150873400 "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,529 basehttp 120 139751151934264 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,533 basehttp 120 139751148620600 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,534 basehttp 120 139751149812536 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,556 basehttp 120 139751155092280 "GET /admin/jsi18n/ HTTP/1.1" 200 17546
+INFO 2024-02-01 18:12:37,559 basehttp 120 139751155092280 "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,563 basehttp 120 139751161924408 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,583 basehttp 120 139751148620600 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,583 basehttp 120 139751149812536 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,583 basehttp 120 139751151934264 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,584 basehttp 120 139751150873400 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,635 basehttp 120 139751150873400 "GET /static/debug_toolbar/css/toolbar.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,637 basehttp 120 139751151934264 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,645 basehttp 120 139751148620600 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,645 basehttp 120 139751161924408 "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,645 basehttp 120 139751155092280 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,646 basehttp 120 139751149812536 "GET /static/debug_toolbar/js/toolbar.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,682 basehttp 120 139751150873400 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,685 basehttp 120 139751151934264 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,696 basehttp 120 139751155092280 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,696 basehttp 120 139751149812536 "GET /static/debug_toolbar/css/print.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,705 basehttp 120 139751161924408 "GET /static/debug_toolbar/js/utils.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:37,837 basehttp 120 139751161924408 "GET /favicon.ico HTTP/1.1" 200 23693
+INFO 2024-02-01 18:12:39,826 basehttp 120 139751161924408 "POST /admin/organization/deliveryservice/ HTTP/1.1" 302 0
+INFO 2024-02-01 18:12:39,895 basehttp 120 139751161924408 "GET /admin/organization/deliveryservice/ HTTP/1.1" 200 28092
+INFO 2024-02-01 18:12:39,960 basehttp 120 139751161924408 "GET /admin/jsi18n/ HTTP/1.1" 200 17546
+INFO 2024-02-01 18:12:39,991 basehttp 120 139751161924408 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:40,114 basehttp 120 139751161924408 "GET /favicon.ico HTTP/1.1" 200 23693
+INFO 2024-02-01 18:12:46,839 basehttp 120 139751161924408 "GET /order_work/ HTTP/1.1" 200 19681
+INFO 2024-02-01 18:12:46,874 basehttp 120 139751161924408 "GET /static/debug_toolbar/css/toolbar.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:46,884 basehttp 120 139751155092280 "GET /static/debug_toolbar/css/print.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:12:48,908 basehttp 120 139751161924408 "POST /order_ready_delivery/ HTTP/1.1" 200 18344
+ERROR 2024-02-01 18:12:51,142 handler 120 139751161924408 Метод отправки сообщения сотруднику доставки, с предложением нового задания: A request to the Telegram API was unsuccessful. Error code: 403. Description: Forbidden: bot was blocked by the user
+Traceback (most recent call last):
+  File "/shipping_service/orders/handler.py", line 59, in send_delivery_message
+    message = bot.send_message(chat_id=chat_id, text=f"Для Вас есть Заказ №{order_id.id}:\n"
+  File "/usr/local/lib/python3.10/site-packages/telebot/__init__.py", line 1673, in send_message
+    apihelper.send_message(
+  File "/usr/local/lib/python3.10/site-packages/telebot/apihelper.py", line 264, in send_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/usr/local/lib/python3.10/site-packages/telebot/apihelper.py", line 164, in _make_request
+    json_result = _check_result(method_name, result)
+  File "/usr/local/lib/python3.10/site-packages/telebot/apihelper.py", line 191, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 403. Description: Forbidden: bot was blocked by the user
+ERROR 2024-02-01 18:12:51,153 handler 120 139751155092280 Метод отправки сообщения сотруднику доставки, с предложением нового задания: A request to the Telegram API was unsuccessful. Error code: 403. Description: Forbidden: bot was blocked by the user
+Traceback (most recent call last):
+  File "/shipping_service/orders/handler.py", line 59, in send_delivery_message
+    message = bot.send_message(chat_id=chat_id, text=f"Для Вас есть Заказ №{order_id.id}:\n"
+  File "/usr/local/lib/python3.10/site-packages/telebot/__init__.py", line 1673, in send_message
+    apihelper.send_message(
+  File "/usr/local/lib/python3.10/site-packages/telebot/apihelper.py", line 264, in send_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/usr/local/lib/python3.10/site-packages/telebot/apihelper.py", line 164, in _make_request
+    json_result = _check_result(method_name, result)
+  File "/usr/local/lib/python3.10/site-packages/telebot/apihelper.py", line 191, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 403. Description: Forbidden: bot was blocked by the user
+INFO 2024-02-01 18:12:51,175 basehttp 120 139751161924408 "POST /deliver_order/ HTTP/1.1" 302 0
+INFO 2024-02-01 18:12:51,188 basehttp 120 139751155092280 "POST /deliver_order/ HTTP/1.1" 302 0
+INFO 2024-02-01 18:12:51,273 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20815
+INFO 2024-02-01 18:13:21,385 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20815
+INFO 2024-02-01 18:13:21,600 basehttp 120 139751155092280 "GET /__debug__/history_sidebar/?store_id=3e58cd2a1a7245fe9963f7a9ac3408a4 HTTP/1.1" 200 13423
+INFO 2024-02-01 18:13:51,392 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20816
+INFO 2024-02-01 18:13:51,608 basehttp 120 139751155092280 "GET /__debug__/history_sidebar/?store_id=0b06bd3320364c0b973a5085b0ffdf2f HTTP/1.1" 200 13424
+INFO 2024-02-01 18:14:14,875 basehttp 120 139751155092280 "GET /admin/organization/deliveryservice/ HTTP/1.1" 200 27918
+INFO 2024-02-01 18:14:14,940 basehttp 120 139751155092280 "GET /admin/jsi18n/ HTTP/1.1" 200 17546
+INFO 2024-02-01 18:14:15,053 basehttp 120 139751155092280 "GET /favicon.ico HTTP/1.1" 200 23694
+INFO 2024-02-01 18:14:20,546 basehttp 120 139751155092280 "POST /admin/organization/deliveryservice/ HTTP/1.1" 302 0
+INFO 2024-02-01 18:14:20,615 basehttp 120 139751155092280 "GET /admin/organization/deliveryservice/ HTTP/1.1" 200 28092
+INFO 2024-02-01 18:14:20,679 basehttp 120 139751155092280 "GET /admin/jsi18n/ HTTP/1.1" 200 17546
+INFO 2024-02-01 18:14:20,793 basehttp 120 139751155092280 "GET /favicon.ico HTTP/1.1" 200 23693
+INFO 2024-02-01 18:14:22,291 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20792
+INFO 2024-02-01 18:14:23,233 basehttp 120 139751155092280 "GET /__debug__/history_sidebar/?store_id=9309f42111474429b773fa21e9e809b8 HTTP/1.1" 200 13423
+INFO 2024-02-01 18:14:52,295 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20793
+INFO 2024-02-01 18:14:53,232 basehttp 120 139751155092280 "GET /__debug__/history_sidebar/?store_id=78210bab51244da5807818cd41dd292b HTTP/1.1" 200 13424
+INFO 2024-02-01 18:15:22,288 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20792
+INFO 2024-02-01 18:15:23,232 basehttp 120 139751155092280 "GET /__debug__/history_sidebar/?store_id=adee44fa32014f1f9efb5a59b7984288 HTTP/1.1" 200 13423
+INFO 2024-02-01 18:15:52,313 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20794
+INFO 2024-02-01 18:15:53,234 basehttp 120 139751155092280 "GET /__debug__/history_sidebar/?store_id=e99a3de8a3674e559e61e8e27a135adf HTTP/1.1" 200 13425
+INFO 2024-02-01 18:16:22,292 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20792
+INFO 2024-02-01 18:16:23,233 basehttp 120 139751155092280 "GET /__debug__/history_sidebar/?store_id=468efa07e3824c85955bafccd58eae23 HTTP/1.1" 200 13423
+INFO 2024-02-01 18:16:52,288 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20792
+INFO 2024-02-01 18:16:53,232 basehttp 120 139751155092280 "GET /__debug__/history_sidebar/?store_id=e52f13c972674c4c8896abac033c39c4 HTTP/1.1" 200 13423
+INFO 2024-02-01 18:17:22,296 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20793
+INFO 2024-02-01 18:17:23,232 basehttp 120 139751155092280 "GET /__debug__/history_sidebar/?store_id=409df1e47afa435dbfeb1bdcda3a5dc4 HTTP/1.1" 200 13424
+INFO 2024-02-01 18:17:52,295 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20792
+INFO 2024-02-01 18:17:53,234 basehttp 120 139751155092280 "GET /__debug__/history_sidebar/?store_id=36bf3d77528c4c589ec0589d0262781b HTTP/1.1" 200 13423
+INFO 2024-02-01 18:18:22,300 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20793
+INFO 2024-02-01 18:18:23,232 basehttp 120 139751155092280 "GET /__debug__/history_sidebar/?store_id=9c6687e6d67d476e870319e264769cd7 HTTP/1.1" 200 13424
+INFO 2024-02-01 18:18:52,287 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20792
+INFO 2024-02-01 18:18:53,232 basehttp 120 139751155092280 "GET /__debug__/history_sidebar/?store_id=d4fdbeb33e4548179bbcc5eef37d61fd HTTP/1.1" 200 13423
+INFO 2024-02-01 18:19:53,296 basehttp 120 139751155092280 "GET /completed_orders/ HTTP/1.1" 200 20793
+INFO 2024-02-01 18:19:54,232 basehttp 120 139751155092280 "GET /__debug__/history_sidebar/?store_id=8e2e9d832afb41ef949a9aecc4805345 HTTP/1.1" 200 13424
+INFO 2024-02-01 18:20:39,369 autoreload 120 139751249333064 /shipping_service/orders/handler.py changed, reloading.
+INFO 2024-02-01 18:20:40,268 autoreload 132 140137968753480 Watching for file changes with StatReloader
+INFO 2024-02-01 18:20:54,470 basehttp 132 140137881336632 "GET /completed_orders/ HTTP/1.1" 200 20795
+INFO 2024-02-01 18:20:55,232 basehttp 132 140137881336632 "GET /__debug__/history_sidebar/?store_id=ad394c4bee7c40dbbaf8b199c80aae7a HTTP/1.1" 200 13426
+INFO 2024-02-01 18:21:55,297 basehttp 132 140137881336632 "GET /completed_orders/ HTTP/1.1" 200 20793
+INFO 2024-02-01 18:21:56,233 basehttp 132 140137881336632 "GET /__debug__/history_sidebar/?store_id=9d02aba63dca41ffbd2454aa356780a9 HTTP/1.1" 200 13424
+INFO 2024-02-01 18:22:56,296 basehttp 132 140137881336632 "GET /completed_orders/ HTTP/1.1" 200 20793
+INFO 2024-02-01 18:22:57,232 basehttp 132 140137881336632 "GET /__debug__/history_sidebar/?store_id=3eeb5876ca214de1b23f37eb3bf85ab8 HTTP/1.1" 200 13424
+INFO 2024-02-01 18:23:57,303 basehttp 132 140137881336632 "GET /completed_orders/ HTTP/1.1" 200 20793
+INFO 2024-02-01 18:23:58,233 basehttp 132 140137881336632 "GET /__debug__/history_sidebar/?store_id=2cd0679a33be44829b95b2dc2dce20ad HTTP/1.1" 200 13424
+INFO 2024-02-01 18:24:58,294 basehttp 132 140137881336632 "GET /completed_orders/ HTTP/1.1" 200 20793
+INFO 2024-02-01 18:24:59,232 basehttp 132 140137881336632 "GET /__debug__/history_sidebar/?store_id=34ab7b90e9ca4dfb817a27eca56e68d3 HTTP/1.1" 200 13424
+INFO 2024-02-01 18:25:59,296 basehttp 132 140137881336632 "GET /completed_orders/ HTTP/1.1" 200 20793
+INFO 2024-02-01 18:26:00,234 basehttp 132 140137881336632 "GET /__debug__/history_sidebar/?store_id=f4115131ffe34c1b86319f07a09b4851 HTTP/1.1" 200 13424
+INFO 2024-02-01 18:26:25,947 autoreload 132 140137968753480 /shipping_service/orders/tasks.py changed, reloading.
+INFO 2024-02-01 18:26:26,621 autoreload 139 140332782893896 Watching for file changes with StatReloader
+INFO 2024-02-01 18:27:00,446 basehttp 139 140332695477048 "GET /completed_orders/ HTTP/1.1" 200 20795
+INFO 2024-02-01 18:27:01,233 basehttp 139 140332695477048 "GET /__debug__/history_sidebar/?store_id=84302a92939745f7bd26a0c461a6cd5f HTTP/1.1" 200 13426
+INFO 2024-02-01 18:28:01,303 basehttp 139 140332695477048 "GET /completed_orders/ HTTP/1.1" 200 20793
+INFO 2024-02-01 18:28:02,232 basehttp 139 140332695477048 "GET /__debug__/history_sidebar/?store_id=adb70ad2a81b42dabd717573fae5eb14 HTTP/1.1" 200 13424
+INFO 2024-02-01 18:29:02,296 basehttp 139 140332695477048 "GET /completed_orders/ HTTP/1.1" 200 20793
+INFO 2024-02-01 18:29:03,232 basehttp 139 140332695477048 "GET /__debug__/history_sidebar/?store_id=67f54f70c2d7427f9f1fa5391fd2d0d8 HTTP/1.1" 200 13424
+INFO 2024-02-01 18:30:03,608 basehttp 139 140332695477048 "GET /completed_orders/ HTTP/1.1" 200 20795
+INFO 2024-02-01 18:30:04,257 basehttp 139 140332695477048 "GET /__debug__/history_sidebar/?store_id=9af14b16ddd543a0bfa19d33a6fc66f7 HTTP/1.1" 200 13426
+INFO 2024-02-01 18:30:52,181 basehttp 139 140332695477048 "GET /completed_orders/ HTTP/1.1" 200 20792
+INFO 2024-02-01 18:30:52,393 basehttp 139 140332695477048 "GET /__debug__/history_sidebar/?store_id=7da9ca4962d0410a80ca9ed042cc1194 HTTP/1.1" 200 13423
+INFO 2024-02-01 18:30:53,307 basehttp 139 140332695477048 "GET / HTTP/1.1" 200 23682
+INFO 2024-02-01 18:30:53,367 basehttp 139 140332695477048 "GET /static/shop_app/css/style.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:30:53,387 basehttp 139 140332695477048 "GET /static/shop_app/js/scripts.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:30:53,399 basehttp 139 140332687268664 "GET /static/debug_toolbar/css/toolbar.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:30:53,434 basehttp 139 140332695477048 "GET /static/debug_toolbar/js/toolbar.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:30:53,457 basehttp 139 140332687268664 "GET /static/debug_toolbar/css/print.css HTTP/1.1" 304 0
+INFO 2024-02-01 18:30:53,516 basehttp 139 140332695477048 "GET /static/debug_toolbar/js/utils.js HTTP/1.1" 304 0
+INFO 2024-02-01 18:36:33,187 basehttp 139 140332685880120 "GET / HTTP/1.1" 200 23684

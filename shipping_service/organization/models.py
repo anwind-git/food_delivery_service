@@ -55,8 +55,9 @@ class Addresses(models.Model):
     Представляет адреса, в которых работает магазин.
     """
     city = models.ForeignKey('Cities', on_delete=models.CASCADE, verbose_name='Город')
-    addresse = models.CharField(max_length=250, db_index=True, blank=False, verbose_name='Адрес ресторана')
-    phone = models.CharField(max_length=20, blank=False, verbose_name='Телефон')
+    addresse = models.CharField(max_length=250, db_index=True, blank=False, verbose_name='Адрес магазина')
+    phone = models.CharField(max_length=20, verbose_name='Телефон')
+    working_time = models.CharField(max_length=16, verbose_name='Время работы')
 
     class Meta:
         """
@@ -64,7 +65,7 @@ class Addresses(models.Model):
         """
         db_table = 'addresses'
         verbose_name = 'адрес'
-        verbose_name_plural = 'Адреса ресторанов'
+        verbose_name_plural = 'Адреса магазинов'
 
     def __str__(self):
         """

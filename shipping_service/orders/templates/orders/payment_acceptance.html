@@ -1,0 +1,27 @@
+{% extends 'orders/base_user.html' %}
+{% block content %}
+<div class="container">
+    <br>
+    <h4>Вы действительно хотите принять оплату за <b>заказ №{{order_id}}</b> ?</h4>
+    <p class="text-danger"><b>ВНИМАНИЕ! Используйте эту форму в том случае, если по каким то причинам сотрудник доставки не смог лично
+        подтвердить заказ. И вы точно уверены, что заказ доставлен.</b></p>
+    <hr>
+    <b>Идентификатор заказа:</b> {{order_identifier}}<br>
+    <b>Телефон:</b> {{order_phone}}<br>
+    <b>Адрес для доставки:</b> {{order_address}}<br>
+    <b>Заказ создан:</b> {{order_created}}<br>
+    <hr>
+    <div class="row">
+        <div class="col-2">
+            <form action="{% url 'orders:payment_acceptance' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" id="payment_identifier" name="payment_identifier" value="{{identifier}}">
+                <button class="btn btn-success" type="submit">Принять оплату</button>
+            </form>
+        </div>
+        <div class="col-2">
+            <a href="{% url 'orders:completed_orders' %}" class="btn btn-primary">Отмена</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

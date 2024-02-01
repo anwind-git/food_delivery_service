@@ -17,10 +17,17 @@ env.read_env()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str('SECRET_KEY')
 
+'''
+CSRF_TRUSTED_ORIGINS = ['https://302f-188-162-185-90.ngrok-free.app']
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '302f-188-162-185-90.ngrok-free.app']
+'''
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 INTERNAL_IPS = ["127.0.0.1"]
 
 TOKEN_BOT = env.str('TOKEN_BOT')  # Подключаем токен от телеграм бота
@@ -158,25 +165,84 @@ DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': show_toolbar,
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION':  BASE_DIR /"cache",
+    }
+}
 
 
 # Настройки магазина
-site_name = 'Simple header'  # название магазина(сайта)
-currency2 = 'руб.'  # валюта, выводиться на страницах магазина
-single_telephone_number = '+7(000) 000-00-00'  # единый телефон поддержки
-commission_free_price = 200  # стоимость доставки заказа без комиссии юкасса
+SITE_NAME = 'Simple header'  # название магазина(сайта)
+SHOP_CURRENCY = 'руб.'  # валюта, выводиться на страницах магазина
+SINGLE_TELEPHONE_NUMBER = '+7(000) 000-00-00'  # единый телефон поддержки
+DENIAL_SERVICE = (
+        (1, 'ЗАКАЗ ОТМЕНЕН КЛИЕНТОМ'),
+        (2, 'ЗАКАЗ НЕ ПОДТВЕРЖДЕН'),
+        (3, 'В АДРЕСЕ ДОСТАВКИ УКАЗАН НЕ ВЕРНЫЙ ГОРОД')
+    )  # причины для отказа доставки заказа, возврат средств
+COMMISSION_FREE_PRICE = 200  # стоимость доставки заказа без комиссии юкасса
+CACHE_TIME = 60  # время кэширования в секундах
+RESPONSE_TIME = 600  # Время в секундах, которое дается сотруднику на ответ, принимает он заказ или нет.
 
 # Настройки Юкасса https://yookassa.ru/developers/payment-acceptance/receipts/54fz/other-services/parameters-values
-commission = 0.037  # комиссия юказза за проведение операции
+COMMISSION = 0.037  # комиссия Юкасса за проведение операции
 
 # стоимость доставки с комиссией от юкасса
-shipping_cost = math.ceil(Decimal(commission_free_price) * Decimal(1 + commission))
+SHIPPING_COST = math.ceil(Decimal(COMMISSION_FREE_PRICE) * Decimal(1 + COMMISSION))
 
-currency1 = 'RUB'  # валюта для Юкасса
-method_payment = 'bank_card'  # метод оплаты
-tax_system_code = '2'  # Коды систем налогообложения
-vat_code = '3'  # Код ставки НДС
-payment_mode = 'full_prepayment'  # признак способа расчета
-payment_subject = 'commodity'  # признак предмета расчета
-country_of_origin_code = 'RU'  # код страны происхождения
-measure = 'piece'  # Мера количества предмета расчета
+FIAT_CURRENCY = 'RUB'  # валюта для Юкасса
+METHOD_PAYMENT = 'bank_card'  # метод оплаты
+TAX_SYSTEM_CODE = '2'  # Коды систем налогообложения
+VAT_CODE = '3'  # Код ставки НДС
+PAYMENT_MODE = 'full_prepayment'  # признак способа расчета
+PAYMENT_SUBJECT = 'commodity'  # признак предмета расчета
+COUNTRY_OF_ORIGIN_CODE = 'RU'  # код страны происхождения
+MEASURE = 'piece'  # Мера количества предмета расчета
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process} {thread} {message}','style': '{',
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': './log/django.log',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        },
+        'shop_app': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'orders': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'cart': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+

@@ -31,10 +31,10 @@
 
       </div>
       <div class="col text-center">
-        Цена: {{ product.price }} {{currency2}}
+        Цена: {{ product.price }} {{SHOP_CURRENCY}}
       </div>
       <div class="col text-center">
-        Сумма: {{ item.total_price }} {{currency2}}
+        Сумма: {{ item.total_price }} {{SHOP_CURRENCY}}
       </div>
       <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
         <a class="btn btn-danger" href="{% url 'cart:cart_remove' product.id %}">X</a>
@@ -45,7 +45,7 @@
       {% endfor %}
     <div class="row align-items-center">
       <div class="col-8">
-        <h3>Общая стоимость заказа: {{ cart.get_total_price }} {{currency2}}</h3>
+        <h3>Общая стоимость заказа: {{ cart.get_total_price }} {{SHOP_CURRENCY}}</h3>
       </div>
       <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
         <a href="{% url 'orders:new_order' %}" class="btn btn-success btn-lg">К оформлению заказа</a>

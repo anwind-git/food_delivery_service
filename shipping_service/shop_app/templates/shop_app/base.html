@@ -39,7 +39,7 @@
                     <a class="btn btn-light text-uppercase btn-lg" href="{% url 'shop_app:shop_app' m.url_name %}" role="button">{{ m.title }}</a>
                   {% endfor %}
                   {% if request.user.is_authenticated %}
-                  <a class="btn btn-info text-uppercase btn-lg" href="{% url 'shop_app:processing' %}" role="button">{{user.username}}</a>
+                  <a class="btn btn-info text-uppercase btn-lg" href="{% url 'orders:processing' %}" role="button">{{user.username}}</a>
                   <a class="btn btn-info text-uppercase btn-lg" href="{% url 'shop_app:logout' %}" role="button">выход</a>
                   {% else %}
                   <a class="btn btn-light text-uppercase btn-lg" href="{% url 'shop_app:login' %}" role="button">вход</a>

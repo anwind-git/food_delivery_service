@@ -5,7 +5,7 @@ import telebot
 from django.conf import settings
 from telebot import TeleBot
 from django.shortcuts import redirect, get_object_or_404
-from organization.models import DeliveryService, UserProfile
+from .models import DeliveryService, UserProfile
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 from .models import Orders
 from .tasks import remove_buttons
@@ -13,8 +13,10 @@ from yookassa import Payment
 from django.http import HttpResponse, HttpResponseBadRequest
 from yookassa.domain.notification import WebhookNotification
 from django.views.decorators.csrf import csrf_exempt
-from orders.tasks import payment_search
+from .tasks import payment_search
+import logging
 
+logger = logging.getLogger(__name__)
 
 bot = TeleBot(settings.TOKEN_BOT)
 
@@ -35,16 +37,18 @@ def take_order(request):
                 order.work = True
                 order.save()
 
-                return redirect('shop_app:order_work')
+                return redirect('orders:order_work')
             else:
-                return redirect('shop_app:processing')
+                return redirect('orders:processing')
         except Exception as e:
-            return HttpResponseBadRequest(f"Произошла ошибка: {str(e)}")
-
-    return redirect('shop_app:order_work')
+            logger.exception(f'Ошибка в методе приема нового заказа: {e}')
+    return redirect('orders:order_work')
 
 
 def send_delivery_message(selected_employee, order_id):
+    """
+    Метод отправки сообщения сотруднику доставки, с предложением нового задания.
+    """
     chat_id = selected_employee.telegram
     keyboard = InlineKeyboardMarkup()
     yes = InlineKeyboardButton("Да", callback_data='yes:' + str(order_id.id))
@@ -64,8 +68,10 @@ def send_delivery_message(selected_employee, order_id):
         order_id.work = False
         order_id.delivery_service = selected_employee
         order_id.save()
-        remove_buttons.apply_async(args=[chat_id, order_id.identifier,  message.message_id], countdown=60)
+        remove_buttons.apply_async(args=[chat_id, order_id.identifier,  message.message_id],
+                                   countdown=settings.RESPONSE_TIME)
     except telebot.apihelper.ApiException as e:
+        logger.info(f'Сотрудник службы доставки заблокировал бота')
         selected_employee.work_authorization = False
         selected_employee.save()
 
@@ -80,8 +86,8 @@ def choose_security_officer(order_id):
         random_employee = random.choice(available_employees)
         send_delivery_message(random_employee, order_id)
     except IndexError:
-        comment = "Нет свободных сотрудников службы доставки"
-        return comment
+        logger.info('Нет свободных сотрудников службы доставки')
+        return redirect('order:order_work')
 
 
 def deliver_order(request):
@@ -92,7 +98,7 @@ def deliver_order(request):
         order_identifier = request.POST.get("order_identifier")
         order = Orders.objects.get(identifier=order_identifier)
         choose_security_officer(order)
-    return redirect('shop_app:completed_orders')
+    return redirect('orders:completed_orders')
 
 
 def money_refund(request):
@@ -114,27 +120,35 @@ def money_refund(request):
         order.save()
         employee.status = False
         employee.save()
-    return redirect('shop_app:returned_orders')
+    return redirect('orders:returned_orders')
 
 
 def order_cancellation(request):
     """
-    Метод отмены заказа и возврата денежных средств клиенту, в случае некорректного оформления заказа клиентом.
+    Метод отмены заказа и возврата денежных средств клиенту.
     """
     if request.method == 'POST':
         idempotence_key = str(uuid.uuid4())
         order_identifier = request.POST.get("order_identifier")
         denial_service = request.POST.get("denial_service")
         order = Orders.objects.get(identifier=order_identifier)
-        response = Payment.cancel(
-            order.identifier,
-            idempotence_key
-        )
+        if order.delivery_service is not None:
+            employee = DeliveryService.objects.get(id=order.delivery_service.id)
+            employee.status = False
+            employee.save()
+        try:
+            response = Payment.cancel(
+                order.identifier,
+                idempotence_key
+            )
+        except Exception as e:
+            logger.exception(f'Ошибка в методе отмены заказа: {e}')
         order.paid = False
         order.work = False
+        order.delivered = False
         order.denial_service = denial_service
         order.save()
-    return redirect('shop_app:order_work')
+    return redirect('orders:order_work')
 
 
 @csrf_exempt

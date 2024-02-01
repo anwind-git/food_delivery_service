@@ -8,9 +8,11 @@ from celery import shared_task
 from .models import Orders, OrderItem
 from organization.models import DeliveryService
 from shop_app.models import Products
-from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 from yookassa import Payment
 from django.core import serializers
+import logging
+
+logger = logging.getLogger(__name__)
 
 bot = TeleBot(settings.TOKEN_BOT)
 
@@ -20,7 +22,7 @@ def payment_search(payment_id):
     """
     Задача Celery для обновления статуса «оплачено» заказа на основе payment_id.
     """
-    order = Orders.objects.get(identifier=payment_id).first()
+    order = Orders.objects.get(identifier=payment_id)
     order.paid = True
     order.save()
 
@@ -28,7 +30,7 @@ def payment_search(payment_id):
 @shared_task
 def remove_buttons(chat_id, order_identifier, message_id):
     """
-    Задача Celery отмена заказа для сотрудника службы доставки который не ответил на сообщении в заданный
+    Задача Celery отмена задачи для сотрудника службы доставки который не ответил на сообщении в заданный
     промежуток времени.
     """
     try:
@@ -41,7 +43,7 @@ def remove_buttons(chat_id, order_identifier, message_id):
         delivery_employee.save()
         order.save()
     except telebot.apihelper.ApiTelegramException as e:
-        print(f"Telegram API Error: {e}")
+        logger.exception(f'Задача Celery отмена задачи для сотрудника службы доставки: {e}')
 
 
 @shared_task
@@ -58,25 +60,15 @@ def delivery_employee_refusal(chat_id, order_id):
 
 
 @shared_task
-def delivery_confirmation(chat_id, order_id):
-    """
-    Задача Celery запрос подтверждения доставки заказа клиенту.
-    """
-    keyboard = InlineKeyboardMarkup()
-    yes_delivery = InlineKeyboardButton("Да", callback_data='yes_delivery:' + str(order_id))
-    client_refused = InlineKeyboardButton("Отказ клиента", callback_data='client_refused:' + str(order_id))
-    keyboard.add(yes_delivery, client_refused)
-
-    bot.send_message(chat_id=chat_id, text=f"Вы доставили Заказ №{order_id}?", reply_markup=keyboard)
-
-
-@shared_task
 def delivery_confirmed(order_id, chat_id):
     """
     Задача Celery если сотрудник службы доставки успешно выполнил заказ.
     """
     order = Orders.objects.get(id=order_id)
-    Payment.capture(order.identifier)
+    try:
+        Payment.capture(order.identifier)
+    except Exception as e:
+        logger.exception(f'Задача Celery если сотрудник службы доставки успешно выполнил заказ: {e}')
     order.delivered = True
     order.save()
 

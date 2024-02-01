@@ -5,7 +5,7 @@
 from decimal import Decimal
 import math
 
-from shipping_service.settings import commission
+from django.conf import settings
 from django.urls import reverse
 from django.db import models
 from recipes.models import Recipes
@@ -63,7 +63,7 @@ class Products(models.Model):
         """
         Прибавляет 3,7% к начальной цене, комиссия за операцию в yookassa.
         """
-        commission_price = math.ceil(self.price * Decimal(1 + commission))
+        commission_price = math.ceil(self.price * Decimal(1 + settings.COMMISSION))
         try:
             data = Products.objects.get(id=self.id)
             if data.price != self.price:

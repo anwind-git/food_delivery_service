@@ -3,34 +3,34 @@
 <div class="container">
     <br>
 {% for contact in contacts %}
-    <div class="row align-items-center">
+    <div class="row">
         <div class="col-3">
             <b>Руководитель:</b>
             <br>
-            {{ contact.last_name }}
-            {{ contact.first_name }}
-            {{ contact.middle_name }}
+            {{contact.last_name}}
+            {{contact.first_name}}
+            {{contact.middle_name}}
+            <br><br>
+            <b>Тел.:</b> {{contact.phone}}
             <br>
-            <b>Тел.:</b> {{ contact.phone }}
+            <b>Электронная почта:</b> {{contact.email}}<br><br>
+            <b>Форма регистрации:</b> {{contact.registration_form}}
             <br>
-            <b>Электронная почта:</b> {{ contact.email }}<br>
-            <b>Форма регистрации:</b> {{ contact.registration_form }}
+            <b>ИНН:</b> {{contact.INN}}
             <br>
-            <b>ИНН:</b> {{ contact.INN }}
-            <br>
-            <b>ОГРН:</b> {{ contact.OGRN }}
-            <hr>
+            <b>ОГРН:</b> {{contact.OGRN}}
         </div>
-        <div class="col">
+        <div class="col bs-light-border-subtle">
             <b>Адреса магазинов:</b>
             <br>
-            {% for address in contact.addresses.all %}
-            <a href="https://yandex.ru/maps/?text={{ address }}" target="_blank">{{ address }}</a><br>
-            Тел.: {{address.phone}}<br><br>
+            {% for item in contact.addresses.all %}
+            <a href="https://yandex.ru/maps/?text={{ item.addresse }}" target="_blank">{{ item.addresse }}</a><br>
+            Тел.: {{item.phone}}<br>
+            Время работы: {{item.working_time}}<br><br>
             {% endfor %}
-            <hr>
         </div>
     </div>
+    <hr>
 {% endfor %}
 </div>
 {% endblock %}

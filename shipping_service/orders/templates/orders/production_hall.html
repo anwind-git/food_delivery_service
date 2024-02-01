@@ -19,7 +19,6 @@
       <hr>
       {% if processing %}
         {% for order in processing %}
-          {% if user.id == order.user.id and order.work == True %}
             <div class="alert alert-info" role="alert" data-order-id="{{ order.id }}">
                 <div class="col text-center">
                     <h5>Заказ: №{{order.id}} Дата/время: {{order.created}}</h5>
@@ -31,7 +30,6 @@
                 {% endfor %}
             </div>
           <br><br>
-          {% endif %}
         {% endfor %}
       {% else %}
         <h3 class="text-danger">В текущий момент заказов нет.</h3>
@@ -65,6 +63,6 @@
         {% endif %}
     </main>
 </div>
-<script src="{% static 'shop_app/js/user_panel_scripts.js' %}"></script>
+<script src="{% static 'orders/js/user_panel_scripts.js' %}"></script>
 </body>
 </html>

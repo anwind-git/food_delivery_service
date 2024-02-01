@@ -1,7 +1,7 @@
 from django.conf import settings
 from telebot import TeleBot, types
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
-from orders.tasks import delivery_employee_refusal, delivery_confirmation, delivery_confirmed, customer_backed_out
+from orders.tasks import delivery_employee_refusal, delivery_confirmed, customer_backed_out
 from organization.tasks import add_employee
 from organization.models import Cities, DeliveryService
 from orders.models import Orders
@@ -13,13 +13,20 @@ smile2 = u'\U0001F614'  # грустный смайлик
 
 
 def open_orders(message):
-    order = Orders.objects.filter(delivery_service__telegram=message.chat.id, paid=True,
-                                  delivered=False)
+    bot.delete_message(chat_id=message.chat.id, message_id=message.message_id - 1)
+    order = Orders.objects.filter(delivery_service__telegram=message.chat.id, paid=True, work=False, delivered=False)
     for item in order:
         bot.send_message(message.chat.id, f"Заказ №{item.id}\n"
                                           f"Забрать: {item.user.address}\n"
                                           f"Доставить: {item.address}\n"
-                                          f"Контактный телефон: {item.phone}")
+                                          f"Телефон клиента: {item.phone}\n"
+                                          f"Телефон оператора: {item.user.phone}\n")
+        keyboard = InlineKeyboardMarkup()
+        yes_delivery = InlineKeyboardButton("Да", callback_data='yes_delivery:' + str(item.id))
+        client_refused = InlineKeyboardButton("Отказ клиента", callback_data='client_refused:' + str(item.id))
+        keyboard.add(yes_delivery, client_refused)
+
+        bot.send_message(message.chat.id, text=f"Вы доставили Заказ №{item.id}?", reply_markup=keyboard)
 
 
 @bot.message_handler(func=lambda message: True)
@@ -69,7 +76,6 @@ def order_acceptance(callback):
     elif callback.data.startswith('yes:'):
         bot.edit_message_reply_markup(callback.message.chat.id, callback.message.message_id, reply_markup=None)
         bot.send_message(callback.message.chat.id, f"Вы приняли Заказ №{id_data}")
-        delivery_confirmation.apply_async(args=[chat_id, id_data], countdown=60)
 
     elif callback.data.startswith('yes_delivery:'):
         bot.edit_message_reply_markup(callback.message.chat.id, callback.message.message_id, reply_markup=None)

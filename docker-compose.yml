@@ -35,7 +35,7 @@ services:
       context: .
     hostname: worker
     entrypoint: celery
-    command: -A celery_app.app worker --loglevel=info
+    command: -A celery_app.app worker --loglevel=ERROR
     volumes:
       - ./shipping_service:/shipping_service
     links:
