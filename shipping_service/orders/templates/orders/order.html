@@ -1,0 +1,36 @@
+{% extends 'orders/base_user.html' %}
+{% block content %}
+  <div class="container" id="order-container">
+      <br>
+      <h4>Поступление новых необработанных заказов:</h4>
+      <hr>
+      {% if processing %}
+        {% for order in processing %}
+            <div class="alert alert-info" role="alert" data-order-id="{{ order.id }}">
+                <div class="row">
+                    <div class="col-9">
+                        <b>Заказ:</b> №{{order.id}} <b>Телефон: </b> {{order.phone}}<br>
+                        <b>Адрес доставки:</b> {{order.address}}<br>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <form action="{% url 'orders:take_order' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" id="order_id" name="order_id" value="{{order.id}}">
+                            <input type="hidden" id="user_id" name="user_id" value="{{user.id}}">
+                            <input class="btn btn-success btn-lg" type="submit" value="Принять заказ">
+                        </form>
+                    </div>
+                </div>
+            </div>
+          {% for item in order.items.all %}
+            <img src="/{{item.product.image}}" width="80" height="50">&nbsp;&nbsp;&nbsp;<a href="/product/{{item.product.slug}}">{{ item.product.product_name }}</a> (кол-во: {{item.quantity}})&nbsp;&nbsp;&nbsp;
+          {% endfor %}
+          <hr>
+          <br>
+        {% endfor %}
+      {% else %}
+        <h3 class="text-danger">В текущий момент новых заказов нет.</h3>
+      {% endif %}
+
+</div>
+{% endblock %}

@@ -27,15 +27,14 @@
           <button type="submit" class="btn btn-default" name="quantity" value="{{ item.update_quantity_form.quantity.value|add:'1' }}">+</button>
           </span>
           {% csrf_token %}
-
         </form>
 
       </div>
       <div class="col text-center">
-        Цена: {{ product.price }} Руб.
+        Цена: {{ product.price }} {{SHOP_CURRENCY}}
       </div>
       <div class="col text-center">
-        Сумма: {{ item.total_price }} Руб.
+        Сумма: {{ item.total_price }} {{SHOP_CURRENCY}}
       </div>
       <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
         <a class="btn btn-danger" href="{% url 'cart:cart_remove' product.id %}">X</a>
@@ -45,11 +44,11 @@
         {% endwith %}
       {% endfor %}
     <div class="row align-items-center">
-      <div class="col-9">
-        <h3>Общая стоимость заказа: {{ cart.get_total_price }} Руб.</h3>
+      <div class="col-8">
+        <h3>Общая стоимость заказа: {{ cart.get_total_price }} {{SHOP_CURRENCY}}</h3>
       </div>
       <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-        <a href="{% url 'orders:order_create' %}" class="btn btn-success btn-lg">К оформлению заказа</a>
+        <a href="{% url 'orders:new_order' %}" class="btn btn-success btn-lg">К оформлению заказа</a>
         <a href="{% url 'shop_app:shop_app' %}" class="btn btn-primary btn-lg">К покупкам</a>
       </div>
     </div>

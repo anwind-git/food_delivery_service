@@ -78,6 +78,14 @@ class Cart:
         """
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
 
+    def price_with_delivery(self):
+        """
+        Метод получения общей стоимость товаров в корзине
+        """
+        total_price = sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+        total_price += settings.SHIPPING_COST
+        return total_price
+
     def clear(self):
         """
         Метод очищения корзины от товаров

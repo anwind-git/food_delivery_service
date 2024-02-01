@@ -5,6 +5,7 @@
 from decimal import Decimal
 import math
 
+from django.conf import settings
 from django.urls import reverse
 from django.db import models
 from recipes.models import Recipes
@@ -18,7 +19,6 @@ class Products(models.Model):
     objects = models.Manager()
 
     SHELF_LIFE = (
-        (0, '---------'),
         (1, '5 суток при температуре от +2 до +5 °C'),
         (2, '48 часов при температуре от +2 до +5 °C'),
         (3, '72 часа при температуре от +2 до +5 °C')
@@ -33,7 +33,7 @@ class Products(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     cities = models.ManyToManyField(Cities, verbose_name='Города обслуживания')
     menu_categories = models.ManyToManyField('MenuCategories', verbose_name='Категория товара')
-    queue = models.IntegerField(editable=False, default=0, verbose_name='Очередность')
+    queue = models.IntegerField(editable=False, default=0, verbose_name='Популярность')
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Создано')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
     publication = models.BooleanField(default=True, verbose_name='Опубликовано')
@@ -63,7 +63,7 @@ class Products(models.Model):
         """
         Прибавляет 3,7% к начальной цене, комиссия за операцию в yookassa.
         """
-        commission_price = math.ceil(self.price * Decimal(1 + 0.037))
+        commission_price = math.ceil(self.price * Decimal(1 + settings.COMMISSION))
         try:
             data = Products.objects.get(id=self.id)
             if data.price != self.price:

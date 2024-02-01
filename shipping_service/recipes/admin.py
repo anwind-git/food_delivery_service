@@ -21,4 +21,3 @@ class AddIngredientToRecipeAdmin(admin.ModelAdmin):
     list_display = ['recipe', 'ingredient', 'weight']
     list_filter = ['recipe']
     list_per_page = 15
-

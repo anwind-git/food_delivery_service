@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{{title}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'shop_app/css/style.css' %}"}>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{% static 'shop_app/css/login.css' %}">
+    </head>
+<body>
+<div class="container">
+ <div class="row">
+ <div class="col-md-offset-3 col-md-6">
+ <form method="post" class="form-horizontal">
+    <span class="heading">АВТОРИЗАЦИЯ</span>
+     <div class="form-group">
+     {% csrf_token %}
+     <div class="form-error">{{ form.non_field_errors }}</div>
+     {% for f in form %}
+         <p>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+     {% endfor %}
+         <br>
+     <button type="submit" class="btn btn-primary btn-lg">Авторизация</button>
+         <a href="{% url 'shop_app:shop_app' %}" class="btn btn-danger btn-lg">Х</a>
+     </div>
+ </form>
+ </div>
+ </div>
+</div>

@@ -1,0 +1,19 @@
+{% extends 'orders/base_user.html' %}
+{% block content %}
+<div class="container">
+    <br>
+    <h4><b>Заказ №{{order_id}}</b> готов к доставке?</h4>
+    <hr>
+    <b>Идентификатор:</b> {{order_identifier}}<br>
+    <b>Телефон заказчика:</b> {{order_phone}}<br>
+    <b>Адрес доставки:</b> {{order_address}}<br>
+    <b>Заказ создан:</b> {{order_created}}<br>
+    <hr>
+    <form action="{% url 'orders:deliver_order' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" id="order_identifier" name="order_identifier" value="{{order_identifier}}">
+        <input class="btn btn-danger btn-lg" type="submit" value="Доставить заказ">
+        <a href="{% url 'orders:order_work' %}" class="btn btn-primary btn-lg">Отмена</a>
+    </form>
+</div>
+{% endblock %}

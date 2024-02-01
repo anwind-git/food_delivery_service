@@ -7,30 +7,34 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1>Оформление заказа</h1>
-            <h4>На общую стоимость: {{ cart.get_total_price }} руб.</h4>
+            <h2>Оформление заказа:</h2>
+            <br>
+            <h4>На общую стоимость: {{cart.price_with_delivery}} {{SHOP_CURRENCY}}</h4>
             <br>
             СОСТАВ ЗАКАЗА:
             <hr>
-            <ul>
                 {% for item in cart %}
-                    <li>
-                        {{ item.product }}: в кол-ве: {{ item.quantity }}
+                        <img src="/{{item.product.image}}" width="80" height="50"> {{ item.product }}: в кол-ве: {{ item.quantity }}
                         {%  if item.quantity < 2%}порция{% endif %}
                         {%  if item.quantity > 1 and item.quantity < 5 %}порции{% endif %}
                         {%  if item.quantity > 4 %}порций{% endif %}
-                        на сумму: {{ item.total_price }} руб.
-                    </li>
+                        на сумму: {{ item.total_price }} {{SHOP_CURRENCY}}<br><br>
                 {% endfor %}
-            </ul>
+            <hr>
+             <h3>Доставка заказа: {{shipping_cost}} {{SHOP_CURRENCY}}</h3>
         </div>
         <div class="col">
-            <form action="." method="post" class="order-form">
-                {{ form.as_p }}
-                <input class="form-control" id="phone" name="phone" type="text" placeholder="Телефон" required/>
-                <br>
-                <input class="btn btn-success btn-lg" type="submit" value="Оплатить">
+            <h2>Заполните все поля:</h2>
+            <br>
+            <form action="" method="post" class="order-form">
                 {% csrf_token %}
+                <div class="form-error">{{form.non_field_errors}}</div>
+                {% for f in form %}
+                    <p>{{f}}</p>
+                    <div class="form-error">{{f.errors}}</div>
+                {% endfor %}
+                <input class="btn btn-success btn-lg" type="submit" value="Оплатить">
+                <a href="{% url 'shop_app:shop_app' %}" class="btn btn-primary btn-lg">К покупкам</a>
             </form>
         </div>
     </div>

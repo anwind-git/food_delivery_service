@@ -1,18 +1,16 @@
 """
 Включает представления страниц магазина.
 """
-import json
-from django.http import HttpResponse
-from yookassa.domain.notification import WebhookNotification
-from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import logout
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 from recipes.models import Recipes, AddIngredientToRecipe
-from organization.models import NewManager, Cities
+from organization.models import Cities
 from shop_app.models import Products, MenuCategories
+from .forms import LoginUserForm
 from .utils import DataMixin
-from orders.tasks import payment_search
-from yookassa import Payment
 
 
 class BaseClassProduct(DataMixin, ListView):
@@ -28,6 +26,7 @@ class ProductsHome(BaseClassProduct):
     """
     Вид для отображения товаров на главной странице.
     """
+
     def get_context_data(self, **kwargs):
         """
         Добавляет пользовательские контекстные данные для главной страницы.
@@ -86,8 +85,7 @@ class ShowProduct(DataMixin, DetailView):
         """
         context = super().get_context_data(**kwargs)
         obj = self.object
-        context['ingredients'] = (
-            AddIngredientToRecipe.objects.filter(recipe_id=obj.recipe.id).prefetch_related('ingredient'))
+        context['ingredients'] = AddIngredientToRecipe.objects.filter(recipe_id=obj.recipe.id).prefetch_related('ingredient')
         context['recipe'] = Recipes.objects.filter(id=obj.recipe.id).first()
         shelf_life_id = obj.shelf_life
         context['shelf_life'] = dict(Products.SHELF_LIFE)[shelf_life_id]
@@ -96,33 +94,32 @@ class ShowProduct(DataMixin, DetailView):
 
     def get_queryset(self):
         """
-        Набор данных для отображения подробностей о конкретном продукте.
+        Проверяет опубликован или нет продукт, принадлежность к городу выбранному клиентом.
         """
         user_context = self.get_user_context()
         city_id = user_context['city']['city_id']
         return Products.objects.filter(cities=city_id, publication=True)
 
 
-class ContactsHome(DataMixin, ListView):
+class LoginUser(DataMixin, LoginView):
     """
-    Вид для отображения контактной информации магазина.
+    Представление страницы авторизации пользователем.
     """
-    model = NewManager
-    template_name = 'shop_app/contacts.html'
-    context_object_name = 'contacts'
+    form_class = LoginUserForm
+    template_name = 'shop_app/login.html'
 
     def get_context_data(self, **kwargs):
-        """
-        Добавьте пользовательские контекстные данные для страницы с контактной информацией.
-        """
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Контактная информация')
-        return dict(list(context.items()) + list(c_def.items()))
+        context['title'] = 'Авторизация пользователя'
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('orders:processing')
 
 
 def post_city(request, city_slug):
     """
-    Установит выбранный город в сессии и перенаправит на главную страницу магазина. Очищает корзину.
+    Метод устанавливает город в сессии. Очищает корзину.
     """
     request.session.pop('cart', None)
     city = Cities.objects.get(slug=city_slug)
@@ -131,19 +128,9 @@ def post_city(request, city_slug):
     return redirect('shop_app:shop_app')
 
 
-@csrf_exempt
-def my_webhook_handler(request):
+def logout_user(request):
     """
-    Метод принимает HTTP-уведомления от Юкасса, о статусе платежа
+    Метод выхода пользователя из панели управления.
     """
-    try:
-        event_json = json.loads(request.body)
-    except json.decoder.JSONDecodeError:
-        return HttpResponse(status=400)
-    notification_object = WebhookNotification(event_json)
-    payment = notification_object.object
-    payment_log = Payment.find_one(payment.id)
-    if payment_log.status == 'succeeded':
-        payment_search.delay(payment.id)
-        return HttpResponse(status=200)
-    return HttpResponse(status=400)
+    logout(request)
+    return redirect('shop_app:login')

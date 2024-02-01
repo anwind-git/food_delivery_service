@@ -1,0 +1,31 @@
+{% extends 'orders/base_user.html' %}
+{% block content %}
+
+<div class="container">
+    <br>
+    <h4>Вы действительно хотите отменить <b>заказ №{{order.id}}</b> ?</h4>
+    <hr>
+    <b>Идентификатор заказа:</b> {{order.identifier}}<br>
+    <b>Телефон:</b> {{order.phone}}<br>
+    <b>Адрес электронной почты:</b> {{order.email}}<br>
+    <b>Город для которого создан заказ:</b> {{order.city}}<br>
+    <b>Адрес для доставки:</b> {{order.address}}<br>
+    <b>Заказ создан:</b> {{order.created}}<br>
+    <hr>
+    СОСТАВ ЗАКАЗА:
+    <hr>
+    {% for item in order.items.all %}
+        <img src="/{{item.product.image}}" width="80" height="50">&nbsp;&nbsp;&nbsp;<a href="/product/{{item.product.slug}}">{{ item.product.product_name }}</a> (кол-во: {{item.quantity}})&nbsp;&nbsp;&nbsp;
+      {% endfor %}
+    <hr>
+    <form action="{% url 'orders:money_refund' %}" method="post">
+        {% csrf_token %}
+        <h5>Причина отказа в обслуживании:</h5>
+        {{denial_service.as_p}}
+        <input type="hidden" id="order_identifier" name="order_identifier" value="{{order.identifier}}">
+        <input type="hidden" id="employee_id" name="employee_id" value="{{order.delivery_service.id}}">
+        <input class="btn btn-danger btn-lg" type="submit" value="Возврат средств клиенту">
+        <a href="{% url 'orders:order_work' %}" class="btn btn-primary btn-lg">Отмена</a>
+    </form>
+</div>
+{% endblock %}

@@ -3,7 +3,8 @@
 """
 from django.db import models
 from shop_app.models import Products
-from organization.models import Cities
+from organization.models import Cities, UserProfile, DeliveryService
+from django.conf import settings
 
 
 class Orders(models.Model):
@@ -16,10 +17,16 @@ class Orders(models.Model):
     email = models.EmailField(verbose_name='Адрес электронной почты')
     address = models.CharField(max_length=250, verbose_name='Адрес доставки')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
-    updated = models.DateTimeField(auto_now=True, verbose_name='Время оплаты')
+    updated = models.DateTimeField(auto_now=True, verbose_name='Последняя операция')
+    user = models.ForeignKey(UserProfile, null=True, on_delete=models.PROTECT,
+                             verbose_name='Оператор', blank=True)
+    delivery_service = models.ForeignKey(DeliveryService, null=True, on_delete=models.PROTECT,
+                                         verbose_name='Сотрудник службы доставки', blank=True)
     paid = models.BooleanField(default=False, verbose_name='Оплачен')
     work = models.BooleanField(default=False, verbose_name='В работе')
     delivered = models.BooleanField(default=False, verbose_name='Доставлен')
+    denial_service = models.IntegerField(choices=settings.DENIAL_SERVICE, null=True, blank=True,
+                                         default=0, verbose_name='Причина отказа в обслуживании')
 
     class Meta:
         """
@@ -34,7 +41,7 @@ class Orders(models.Model):
         """
         Возвращает строковое представление заказа.
         """
-        return f'Заказ {self.id}'
+        return f'Заказ №{self.id}'
 
     def get_total_cost(self) -> float:
         """

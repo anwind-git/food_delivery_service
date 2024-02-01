@@ -2,7 +2,7 @@
 Модуль моделей Django в службе доставки еды для представления рецептов и их состава.
 """
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Sum, CharField
 
 
 class Ingredients(models.Model):
@@ -15,6 +15,20 @@ class Ingredients(models.Model):
     squirrels = models.FloatField(verbose_name='Белки на 100г')
     carbs = models.FloatField(verbose_name='Углеводы на 100г')
 
+    def save(self, *args, **kwargs):
+        """
+        Переопределенный метод сохранения для обновления связанных рецептов.
+        """
+        super().save(*args, **kwargs)
+        recipes_composition = AddIngredientToRecipe.objects.all()
+        recipes = Recipes.objects.all()
+        for item_composition in recipes_composition:
+            if item_composition.ingredient.id == self.pk:
+                item_composition.save()
+        for item_recipes in recipes:
+            if item_recipes.needed_for_dishes.exists() and item_recipes.needed_for_dishes.filter(id=self.pk).exists():
+                item_recipes.save()
+
     class Meta:
         """
         Метаданные для модели ингредиентов.
@@ -23,7 +37,7 @@ class Ingredients(models.Model):
         verbose_name = 'ингредиент'
         verbose_name_plural = 'Ингредиенты'
 
-    def __str__(self) -> str:
+    def __str__(self) -> CharField:
         """
         Возвращает строковое представление ингредиентов.
         """
@@ -79,7 +93,7 @@ class Recipes(models.Model):
         verbose_name = 'рецепт'
         verbose_name_plural = 'Рецепты'
 
-    def __str__(self) -> str:
+    def __str__(self) -> CharField:
         """
         Возвращает строковое представление рецепта.
         """
@@ -88,7 +102,7 @@ class Recipes(models.Model):
 
 class AddIngredientToRecipe(models.Model):
     """
-    Модель, представляющая состав рецепта.
+    Модель, представляющая состава рецепта.
     """
     recipe = models.ForeignKey('Recipes', on_delete=models.CASCADE,
                                verbose_name='Рецепт')
@@ -108,7 +122,11 @@ class AddIngredientToRecipe(models.Model):
         self.fats = (self.ingredient.fats / 100) * float(self.weight)
         self.squirrels = (self.ingredient.squirrels / 100) * float(self.weight)
         self.carbs = (self.ingredient.carbs / 100) * float(self.weight)
+
         super().save(*args, **kwargs)
+        recipes = Recipes.objects.filter(needed_for_dishes__id=self.pk)
+        for item_recipes in recipes:
+            item_recipes.save()
 
     class Meta:
         """
@@ -123,6 +141,3 @@ class AddIngredientToRecipe(models.Model):
         Возвращает строковое представление состава рецепта.
         """
         return str(self.recipe)
-
-
-
