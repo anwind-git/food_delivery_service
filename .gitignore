@@ -1,3 +1,8 @@
 .idea
 image
-./log/django.log
+log
+*.pyc
+__pycache__/
+cache
+.handler-saves
+static
