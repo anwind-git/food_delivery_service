@@ -10,7 +10,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 from .models import Orders
 from .tasks import remove_buttons
 from yookassa import Payment
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse
 from yookassa.domain.notification import WebhookNotification
 from django.views.decorators.csrf import csrf_exempt
 from .tasks import payment_search

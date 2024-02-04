@@ -17,12 +17,8 @@ env.read_env()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str('SECRET_KEY')
 
-'''
-CSRF_TRUSTED_ORIGINS = ['https://302f-188-162-185-90.ngrok-free.app']
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '302f-188-162-185-90.ngrok-free.app']
-'''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG')
@@ -138,10 +134,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+"""
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+"""
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -156,7 +154,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-
+"""
 def show_toolbar(request):
     return True
 
@@ -164,7 +162,7 @@ def show_toolbar(request):
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': show_toolbar,
 }
-
+"""
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
@@ -174,7 +172,7 @@ CACHES = {
 
 
 # Настройки магазина
-SITE_NAME = 'Simple header'  # название магазина(сайта)
+SITE_NAME = 'Demo Магазин'  # название магазина(сайта)
 SHOP_CURRENCY = 'руб.'  # валюта, выводиться на страницах магазина
 SINGLE_TELEPHONE_NUMBER = '+7(000) 000-00-00'  # единый телефон поддержки
 DENIAL_SERVICE = (

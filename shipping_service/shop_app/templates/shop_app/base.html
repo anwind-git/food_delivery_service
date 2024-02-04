@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -108,7 +107,7 @@
 {% endblock paginator%}
 <div class="container">
     <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2023 Simple header</p>
+        <p class="mb-1">&copy; 2024 {{site_name}}</p>
         <ul class="list-inline">
             {% for m in menu %}
                     <a class="list-inline-item" href="{% url 'shop_app:shop_app' m.url_name %}">{{ m.title }}</a>

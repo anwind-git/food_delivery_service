@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core import serializers
 from django.db.models import Max, Prefetch
 from django.shortcuts import redirect, render
-from django.views.generic import FormView, ListView, DetailView
+from django.views.generic import FormView, ListView
 from cart.cart import Cart
 from organization.models import Cities, DeliveryService
 from shop_app.utils import DataMixin

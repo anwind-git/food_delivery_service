@@ -3,7 +3,7 @@ from django.urls import path
 from organization.views import ContactsHome
 from .views import *
 from django.views.decorators.csrf import csrf_exempt
-from orders.handler import (money_refund, deliver_order, order_cancellation, take_order, my_webhook_handler)
+from orders.handler import my_webhook_handler
 
 app_name = 'shop_app'
 

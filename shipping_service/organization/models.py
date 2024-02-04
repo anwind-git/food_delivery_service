@@ -13,13 +13,6 @@ class UserProfile(AbstractUser):
     address = models.ForeignKey('Addresses', null=True, on_delete=models.PROTECT, verbose_name='Адрес')
     phone = models.CharField(max_length=20, blank=False, verbose_name='Телефон')
 
-    def save(self, *args, **kwargs):
-        """
-        Шифруем пароль перед сохранением. раскоментировать после добавления супер пользователя.
-        """
-        self.set_password(self.password)
-        super().save(*args, **kwargs)
-
 
 class NewManager(models.Model):
     """
@@ -105,6 +98,7 @@ class DeliveryService(models.Model):
     phone = models.CharField(max_length=20, blank=False, verbose_name='Телефон')
     telegram = models.CharField(max_length=100, verbose_name='Telegram')
     city = models.ForeignKey(Cities, on_delete=models.PROTECT, verbose_name='Город')
+    manager = models.ForeignKey(NewManager, null=True, on_delete=models.PROTECT, verbose_name='Руководитель')
     status = models.BooleanField(default=False, verbose_name='На доставке')
     day_off = models.BooleanField(default=False, verbose_name='Выходной')
     work_authorization = models.BooleanField(default=False, verbose_name='Допущен к работе')

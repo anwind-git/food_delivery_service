@@ -4,13 +4,15 @@
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic import ListView, DetailView
 from recipes.models import Recipes, AddIngredientToRecipe
 from organization.models import Cities
 from shop_app.models import Products, MenuCategories
 from .forms import LoginUserForm
 from .utils import DataMixin
+from django.conf import settings
+from .utils import menu
 
 
 class BaseClassProduct(DataMixin, ListView):
@@ -134,3 +136,8 @@ def logout_user(request):
     """
     logout(request)
     return redirect('shop_app:login')
+
+
+def page_not_found(request, exception):
+    context = {'site_name': settings.SITE_NAME}
+    return render(request, 'shop_app/page_not_found.html', context)
