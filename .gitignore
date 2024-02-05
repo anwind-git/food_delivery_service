@@ -2,12 +2,7 @@
 image
 log
 *.pyc
-__pycache__/
 cache
 .handler-saves
 static
-
-
-
-
-
+__pycache__/
