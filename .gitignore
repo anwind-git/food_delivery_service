@@ -1,8 +1,5 @@
 .idea
 image
-log
 *.pyc
-cache
 .handler-saves
-static
 __pycache__/
