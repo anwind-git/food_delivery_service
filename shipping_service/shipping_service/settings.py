@@ -217,7 +217,7 @@ LOGGING = {
         },
         'file': {
             'class': 'logging.FileHandler',
-            'filename': './log/django.log',
+            'filename': '/shipping_service/log/django.log',
             'formatter': 'verbose',
         },
     },
