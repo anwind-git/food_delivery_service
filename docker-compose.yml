@@ -4,7 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: gunicorn shipping_service.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./shipping_service:/shipping_service
     ports:
@@ -25,6 +24,7 @@ services:
       - ./shipping_service/static:/usr/share/nginx/html/static
       - ./shipping_service/certbot/conf:/etc/letsencrypt
       - ./shipping_service/certbot/www:/var/www/certbot
+
     ports:
       - "80:80"
       - "443:443"

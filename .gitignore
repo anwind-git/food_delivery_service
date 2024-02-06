@@ -1,5 +1,4 @@
 .idea
 image
 *.pyc
-.handler-saves
 __pycache__/

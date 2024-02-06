@@ -9,23 +9,35 @@ http {
     include mime.types;
     default_type application/octet-stream;
 
+    # Logging settings
     access_log /var/log/nginx/access.log;
     error_log /var/log/nginx/error.log;
 
+    # Server configuration
     server {
         listen 80;
         server_name 120.0.0.1;
         location / {
-            return 301 https://$host$request_uri;  # Redirect HTTP to HTTPS
-        }
-        location /.well-known/acme-challenge/ {
-            root /var/www/certbot;
+            return 301 https://$host$request_uri;
         }
     }
+
+    server {
+        listen 443 ssl;
+        server_name 120.0.0.1;
+
+        ssl_certificate /etc/letsencrypt/live/12.0.0.1/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/120.0.0.1/privkey.pem;
+
+        location /static/ {
+            alias /usr/share/nginx/html/static/;
+        }
+
         location / {
             proxy_pass http://web-app:8000;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-Proto https;
         }
     }
 }

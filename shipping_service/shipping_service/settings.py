@@ -16,14 +16,19 @@ env = Env()
 env.read_env()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str('SECRET_KEY')
-
+"""
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+"""
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG')
 
-ALLOWED_HOSTS = ['vkusnyeedy.ru']
+ALLOWED_HOSTS = ['127.0.0.1']
 INTERNAL_IPS = ["127.0.0.1"]
 
 TOKEN_BOT = env.str('TOKEN_BOT')  # Подключаем токен от телеграм бота
@@ -135,11 +140,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-"""
-STATICFILES_DIRS = [
-    BASE_DIR / "static"
-]
-"""
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
