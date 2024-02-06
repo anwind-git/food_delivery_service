@@ -23,7 +23,7 @@ CSRF_COOKIE_HTTPONLY = True
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['vkusnyeedy.ru']
 INTERNAL_IPS = ["127.0.0.1"]
 
 TOKEN_BOT = env.str('TOKEN_BOT')  # Подключаем токен от телеграм бота
