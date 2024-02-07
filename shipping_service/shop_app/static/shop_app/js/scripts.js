@@ -22,7 +22,7 @@ if (buttonMinus) {
 }
 
 $("#address").suggestions({
-    token: "71198f64877251cba46a2a88ab061f4a4369298a",
+    token: "{{TOKEN_ID_DADATA}}",
     type: "ADDRESS",
     onSelect: function(suggestion) {
         localStorage.setItem("selectedAddress", JSON.stringify(suggestion));
@@ -30,7 +30,7 @@ $("#address").suggestions({
 });
 
 $("#email").suggestions({
-    token: "71198f64877251cba46a2a88ab061f4a4369298a",
+    token: "{{TOKEN_ID_DADATA}}",
     type: "EMAIL",
     onSelect: function(suggestion) {
         localStorage.setItem("selectedEmail", JSON.stringify(suggestion));

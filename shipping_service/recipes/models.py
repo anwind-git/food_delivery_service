@@ -36,6 +36,7 @@ class Ingredients(models.Model):
         db_table = 'ingredients'
         verbose_name = 'ингредиент'
         verbose_name_plural = 'Ингредиенты'
+        ordering = ['name_ingredient']
 
     def __str__(self) -> CharField:
         """
@@ -135,6 +136,7 @@ class AddIngredientToRecipe(models.Model):
         db_table = 'add_ingredient_to_recipe'
         verbose_name = 'рецепт и ингредиент'
         verbose_name_plural = 'Состав рецептов'
+        ordering = ['-id']
 
     def __str__(self) -> str:
         """

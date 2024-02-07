@@ -13,6 +13,14 @@ class UserProfile(AbstractUser):
     address = models.ForeignKey('Addresses', null=True, on_delete=models.PROTECT, verbose_name='Адрес')
     phone = models.CharField(max_length=20, blank=False, verbose_name='Телефон')
 
+'''
+def save(self, *args, **kwargs):
+        """
+        Шифруем пароль перед сохранением. раскоментировать после добавления супер пользователя.
+        """
+        self.set_password(self.password)
+        super().save(*args, **kwargs)
+'''
 
 class NewManager(models.Model):
     """

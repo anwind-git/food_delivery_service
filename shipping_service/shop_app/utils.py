@@ -44,15 +44,12 @@ class DataMixin:
         context['categories'] = categories
         context['addresses'] = Addresses.objects.all()
         context['cart_product_form'] = CartAddProductForm
-        city = cache.get('city')
-        if not city:
-            city = Cities.objects.all()
-            cache.set('city', city, settings.CACHE_TIME)
-        context['cities'] = city
+        context['cities'] = Cities.objects.all()
         context['shipping_cost'] = settings.SHIPPING_COST
         context['SHOP_CURRENCY'] = settings.SHOP_CURRENCY
         context['single_telephone_number'] = settings.SINGLE_TELEPHONE_NUMBER
         context['site_name'] = settings.SITE_NAME
+        context['token_dadata'] = settings.TOKEN_ID_DADATA
         if 'cat_select' not in context:
             context['cat_select'] = 0
         return context
