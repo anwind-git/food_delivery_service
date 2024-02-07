@@ -1,4 +1,4 @@
-Django==5.0.1
+Django==5.0.2
 psycopg2==2.9.9
 Pillow==10.2.0
 dadata==21.10.1
