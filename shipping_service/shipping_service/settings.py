@@ -28,7 +28,7 @@ SESSION_COOKIE_SECURE = True
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['Ваш домен', 'IP сервера', '0.0.0.0']
 INTERNAL_IPS = ["127.0.0.1"]
 
 TOKEN_BOT = env.str('TOKEN_BOT')  # Подключаем токен от телеграм бота

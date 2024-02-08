@@ -28,7 +28,7 @@ class Products(models.Model):
     product_name = models.CharField(max_length=50, verbose_name='Наименование')
     slug = models.SlugField(max_length=50, unique=True, db_index=True, verbose_name="URL")
     description = models.TextField(verbose_name='Полное описание')
-    recipe = models.ForeignKey(Recipes, on_delete=models.PROTECT, verbose_name='Рецепт')
+    recipe = models.OneToOneField(Recipes, on_delete=models.PROTECT, verbose_name="Рецепт")
     shelf_life = models.IntegerField(choices=SHELF_LIFE, default=0, verbose_name='Срок годности')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     cities = models.ManyToManyField(Cities, verbose_name='Города обслуживания')
