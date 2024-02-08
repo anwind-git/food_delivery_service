@@ -16,7 +16,7 @@ class UserProfile(AbstractUser):
 '''
 def save(self, *args, **kwargs):
         """
-        Шифруем пароль перед сохранением. раскоментировать после добавления супер пользователя.
+        Шифруем пароль перед сохранением. Раскомментировать после добавления супер пользователя.
         """
         self.set_password(self.password)
         super().save(*args, **kwargs)
