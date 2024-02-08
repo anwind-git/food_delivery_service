@@ -231,3 +231,134 @@ nano models.py
 # Структура модели данных
 ![Структура модели данных](images/structure.jpg)
 
+    products {
+        id integer pk increments
+        image text
+        product_name varchar(50)
+        slug varchar(50)
+        description text
+        recipe integer > recipes.id
+        shelf_life integer
+        price integer
+        cities integer >* cities.id
+        menu_categories integer *>* menu_categories.id
+        queue integer
+        time_create datetime
+        time_update datetime
+        publication boolean
+        integer
+    }
+    
+    menu_categories {
+        id integer pk increments
+        categorie varchar(20)
+        slug integer(20)
+        queue integer
+    }
+    
+    ingredients {
+        id integer pk increments
+        name_ingredient varchar(30)
+        kcal integer
+        fats float
+        squirrels float
+        carbs float
+    }
+    
+    recipes {
+        id integer pk increments
+        recipe_name varchar(50)
+        serving_weight integer
+        needed_for_dishes integer
+        kcal float
+        fats float
+        squirrels float
+        carbs float
+        integer
+    }
+    
+    add_ingredient_to_recipe {
+        id integer pk increments
+        recipe integer >* recipes.id
+        ingredient integer >* ingredients.id
+        weight integer
+        kcal float
+        fats float
+        squirrels float
+        carbs float
+        integer
+    }
+    
+    user_profile {
+        id integer pk increments
+        city integer
+        address integer
+        phone varchar(20)
+    }
+    
+    about_manager {
+        id integer pk increments
+        last_name varchar(30)
+        first_name varchar(30)
+        middle_name varchar(30)
+        registration_form varchar(50)
+        addresses integer >* addresses.id
+        INN integer
+        OGRN integer
+        phone varchar
+        email varchar
+    }
+    
+    addresses {
+        id integer pk increments
+        city integer >* cities.id
+        addresse varchar(250)
+        phone varchar(20)
+        working_time varchar(16)
+    }
+    
+    cities {
+        id integer pk increments
+        city varchar(70)
+        slug varchar(70)
+    }
+    
+    delivery_service {
+        id integer pk increments
+        fio varchar(100)
+        age integer
+        phone varchar(20)
+        telegram varchar(100)
+        city integer >* cities.id
+        manager integer >* about_manager.id
+        status boolean
+        day_off boolean
+        work_authorization boolean
+        additional_information text
+    }
+    
+    orders {
+        id integer pk increments
+        identifier varchar
+        city integer > cities.id
+        phone varchar
+        email varchar
+        address varchar
+        created datetime
+        updated datetime
+        user integer >* user_profile.id
+        delivery_service integer >* delivery_service.id
+        paid boolean
+        work boolean
+        delivered boolean
+        denial_service integer
+    }
+    
+    order_item {
+        id integer pk increments
+        order integer >* orders.id
+        product integer >* products.id
+        price decimal
+        quantity integer
+    }
+
