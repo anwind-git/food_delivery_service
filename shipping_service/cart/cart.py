@@ -1,5 +1,5 @@
 """
-Модуль для управления корзиной в службе доставки еды.
+Модуль для управления корзиной.
 """
 from decimal import Decimal
 from django.conf import settings

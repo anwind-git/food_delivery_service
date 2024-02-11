@@ -4,7 +4,6 @@
 
 from decimal import Decimal
 import math
-
 from django.conf import settings
 from django.urls import reverse
 from django.db import models
@@ -61,7 +60,7 @@ class Products(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Прибавляет 3,7% к начальной цене, комиссия за операцию в yookassa.
+        Прибавляет комиссию Юкасса к начальной цене
         """
         commission_price = math.ceil(self.price * Decimal(1 + settings.COMMISSION))
         try:

@@ -15,6 +15,7 @@ services:
       - DB_PASS=pass
     depends_on:
       - database
+    command: ["gunicorn", "shipping_service.wsgi:application", "--bind", "0.0.0.0:8000"]
 
   nginx:
     restart: always
