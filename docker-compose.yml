@@ -91,6 +91,7 @@ services:
   delivery:
     build:
       context: .
+      dockerfile: Dockerfile
     hostname: bot
     restart: always
     volumes:
