@@ -56,7 +56,7 @@ TeleBot - использовался для создания бота взаим
     mkdir /var/www
     cd /var/www
 #### Клонируем проект в папку www:
-git clone [https://github.com/anwind-git/food_delivery_service.git]("github.com/anwind-git/food_delivery_service")
+    git clone https://github.com/anwind-git/food_delivery_service.git
 #### Перемещаемся в нее: 
     cd food_delivery_service
 
